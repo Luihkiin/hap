@@ -40,6 +40,8 @@ const estilo = StyleSheet.create({
 
     texto: {
         fontSize: 20,
+        alignSelf: 'flex-start',
+        marginBottom: 10
     },
 
     paragrafo: {
@@ -47,7 +49,7 @@ const estilo = StyleSheet.create({
         paddingLeft: 70,
         paddingRight: 70,
         marginTop: 50,
-        marginBottom: 50,
+        marginBottm: 30,
         justifyContent: 'center'
     },
 
@@ -55,11 +57,30 @@ const estilo = StyleSheet.create({
         backgroundColor: 'white',
         margin: 10,
         borderColor: 'black',
-        borderWidth: 2,
-        borderRadius: 5,
+        borderWidth: 1,
+        borderRadius: 10,
         height: 40,
         width: 250,
-        justifyContent: 'center'
+        justifyContent: 'center',
+    },
+
+    botao: {
+        marginTop: 50,
+        marginBottom: 50,
+        backgroundColor:'white',
+        width: 150,
+        borderColor: 'black',
+        alignSelf:'center',
+        borderRadius: 10,
+    },
+
+    clicavel: {
+        alignSelf:'center',
+        fontSize: 15,
+        fontFamily: 'Poppins-Regular',
+        margin: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 
     caixaGrande: {
@@ -73,14 +94,6 @@ const estilo = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center', 
     },
-
-    rodape: {
-        fontSize: 15,
-        fontFamily: 'Poppins-Regular',
-        margin: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
-    }
 })
 
 export {estilo};
