@@ -7,6 +7,7 @@ import Cadastro from './Cadastro';
 import Feather from 'react-native-vector-icons/Feather';
 import ElementosLogin from '../assets/components/ElementosLogin.js';
 import { useState } from 'react';
+import EsqSenha from './EsqSenha';
 
 // Construtor
 class Construtor extends Component {
@@ -127,7 +128,8 @@ export default function Login({ navigation }) {
             //onPress={ElementosLogin.InsertRecord}>
 
             //Teste com o Fetch dentro do onPress
-            onPress={InsertRecord}>
+            onPress={()=> {InsertRecord,
+            navigation.navigate(Servico)}}>
             <Text style={estilo.clicavel}>
               Entrar
             </Text>
@@ -135,7 +137,7 @@ export default function Login({ navigation }) {
 
           <View syles={estilo.informacao}>
             <TouchableOpacity
-              onPress={Teste}>
+              onPress={() => navigation.navigate(EsqSenha)}>
               <Text style={estilo.clicavel}> Esqueci a senha </Text>
             </TouchableOpacity>
             <TouchableOpacity

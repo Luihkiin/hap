@@ -32,6 +32,7 @@ const estilo = StyleSheet.create({
     titulo: {
         fontSize: 30,
         fontFamily: 'Poppins-Regular',
+        marginBottom: 20,
     },
 
     informacao: {

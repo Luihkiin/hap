@@ -5,24 +5,22 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import Login from './Login';
 
-export default function CadFunc() {
+export default function EsqSenha() {
     return (
         <LinearGradient
             colors={['#FFFFFF', '#00FFF0']}
             style={estilo.linearGradient}>
             <Text style={estilo.titulo}>
-                Funcionário
+                Recuperar Senha
             </Text>
+            <Text>
+                Email Cadastrado
+            </Text>
+            <TextInput>
 
-            <View>
-
-            </View>
-            <TouchableOpacity
-                onPress={() => navigation.navigate(Login)}
-                style={estilo.caixa}>
-                <Text style={estilo.textoCentro}>
-                    Ir para Login
-                </Text>
+            </TextInput>
+            <TouchableOpacity>
+                Confirmar
             </TouchableOpacity>
         </LinearGradient>
     )
