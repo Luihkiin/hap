@@ -44,6 +44,12 @@ const estilo = StyleSheet.create({
         marginBottom: 10
     },
 
+    textoCentro: {
+        fontSize: 20,
+        alignSelf: 'center',
+        marginBottom: 10
+    },
+
     paragrafo: {
         fontSize: 20,
         paddingLeft: 70,

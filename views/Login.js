@@ -8,6 +8,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import ElementosLogin from '../assets/components/ElementosLogin.js';
 import { useState } from 'react';
 
+// Construtor
 class Construtor extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +21,7 @@ class Construtor extends Component {
   }
 }
 
+//Função para Gravar Dados
 function InsertRecord() {
   var CPF = this.state.CPF;
   var PWD = this.state.PWD;
@@ -62,7 +64,7 @@ function InsertRecord() {
 }*/
 }
 
-
+//Início Front-End
 export default function Login({ navigation }) {
 
   const [fontsLoaded] = useFonts({
@@ -90,7 +92,6 @@ export default function Login({ navigation }) {
           </Text>
           <View style={estilo.caixa}>
             <TextInput
-              placeholder="Insira seu CPF aqui"
               keyboardType="numeric"
               onChangeText={CPF => this.setState({ CPF })}
             >
@@ -102,7 +103,6 @@ export default function Login({ navigation }) {
           </Text>
           <View style={estilo.caixa}>
             <TextInput
-              placeholder="Insira sua senha aqui"
               onChangeText={PWD => this.setState({ PWD })}
               /*secureTextEntry={ElementosLogin.state.secureTextEntry ? true : false}
   onChangeText={ PWD => this.state({PWD})}*/>

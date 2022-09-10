@@ -4,6 +4,8 @@ import { estilo } from '../assets/css/Css.js'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import Login from './Login';
+import CadCli from './CadCli';
+import CadFunc from './CadFunc';
 
 function Teste() {
   Alert.alert('Mensagem de Teste', 'Funcionou!!!')
@@ -32,7 +34,7 @@ export default function Cadastro({ navigation }) {
         </Text>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate(Login)}>
+          onPress={() => navigation.navigate(CadCli)}>
           <View style={estilo.caixaGrande}>
             <Text style={estilo.titulo}>
               Cliente
@@ -40,10 +42,18 @@ export default function Cadastro({ navigation }) {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate(Login)}>
+          onPress={() => navigation.navigate(CadFunc)}>
           <View style={estilo.caixaGrande}>
             <Text style={estilo.titulo}>
               Funcionário
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate(Login)}>
+          <View style={estilo.caixa}>
+            <Text style={estilo.textoCentro}>
+              Voltar
             </Text>
           </View>
         </TouchableOpacity>
