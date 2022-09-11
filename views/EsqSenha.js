@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import Login from './Login';
 
-export default function EsqSenha() {
+export default function EsqSenha({ navigation }) {
     return (
         <LinearGradient
             colors={['#FFFFFF', '#00FFF0']}
@@ -16,11 +16,15 @@ export default function EsqSenha() {
             <Text>
                 Email Cadastrado
             </Text>
-            <TextInput>
-
+            <TextInput
+                style={estilo.caixa}>
             </TextInput>
-            <TouchableOpacity>
-                Confirmar
+            <TouchableOpacity
+            style={estilo.caixa}
+            onPress={() => navigation.navigate(Login)}>
+                <Text style={estilo.textoCentro}>
+                    Confirmar
+                </Text>
             </TouchableOpacity>
         </LinearGradient>
     )

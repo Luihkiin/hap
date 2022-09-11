@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import Login from './Login';
 
-export default function CadFunc() {
+export default function CadFunc({ navigation }) {
     return (
         <LinearGradient
             colors={['#FFFFFF', '#00FFF0']}

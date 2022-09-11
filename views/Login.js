@@ -8,62 +8,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import ElementosLogin from '../assets/components/ElementosLogin.js';
 import { useState } from 'react';
 import EsqSenha from './EsqSenha';
-
-// Construtor
-class Construtor extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      CPF: '',
-      PWD: '',
-      check_textInputChange: false,
-      secureTextEntry: true,
-    };
-  }
-}
-
-//Função para Gravar Dados
-function InsertRecord() {
-  var CPF = this.state.CPF;
-  var PWD = this.state.PWD;
-
-  if ((CPF.length == 0) || PWD.length == 0) {
-    Alert.alert("Campos faltando!");
-  } else {
-    /*var APIURL = "http://localhost:80/Entrar/login.php"; //Utilizar este diretório dentro de HTDOCS (Retirar arquivos .php antigos)
-
-    var headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'appplication/json'
-    };*/
-
-    Alert.alert("Campos preenchidos!");
-  }
-  /*var Dados = {
-    CPF: CPF,
-    PWD: PWD,
-  };
-
-  //Função Fetch
-  fetch(APIURL, {
-    method: 'POST',
-    headers: headers,
-    body: JSON.stringify(Dados) //Converte Dados para JSON
-  })
-    .then((Response) => Response.json())
-    .then((Response) => {
-      alert(Response[0].Message)
-      if (Response[0].Message == "Sucesso") {
-        console.log("true")
-        this.props.navigation.navigate(Cadastro); //Navega para a Tela Inicial (COM SERVIÇOS)
-      }
-      console.log(Date);
-    })
-    .catch((error) => {
-      console.error("Erro encontrado" + error);
-    })
-}*/
-}
+import Servico from './Servico';
 
 //Início Front-End
 export default function Login({ navigation }) {
@@ -74,6 +19,24 @@ export default function Login({ navigation }) {
 
   function Teste() {
     Alert.alert('Mensagem de Teste', 'Funcionou!!!')
+  }
+
+  //Declaração das variáveis
+  const [CPF, setCPF] = useState('');
+  const [PWD, setPWD] = useState('');
+
+  //Função para Gravar Dados
+  function GravarDados() {
+    var CPF = this.state.CPF;
+    var PWD = this.state.PWD;
+
+    if ((CPF == '') || PWD == '') {
+      Alert.alert("Campos faltando!");
+    } else {
+      
+      Alert.alert("Campos preenchidos!");
+    }
+    //Função Fetch
   }
 
   return (
@@ -89,22 +52,22 @@ export default function Login({ navigation }) {
         <View style={estilo.informacao}>
           <Text style={estilo.texto}
           >
-            CPF
+            CPF: {CPF}
           </Text>
           <View style={estilo.caixa}>
             <TextInput
               keyboardType="numeric"
-              onChangeText={CPF => this.setState({ CPF })}
+              onChangeText={(text) => setCPF(text)}
             >
             </TextInput>
           </View>
           <Text style={estilo.texto}
           >
-            Senha
+            Senha: {PWD}
           </Text>
           <View style={estilo.caixa}>
             <TextInput
-              onChangeText={PWD => this.setState({ PWD })}
+              onChangeText={(text) => setPWD(text)}
               /*secureTextEntry={ElementosLogin.state.secureTextEntry ? true : false}
   onChangeText={ PWD => this.state({PWD})}*/>
 
@@ -128,8 +91,10 @@ export default function Login({ navigation }) {
             //onPress={ElementosLogin.InsertRecord}>
 
             //Teste com o Fetch dentro do onPress
-            onPress={()=> {InsertRecord,
-            navigation.navigate(Servico)}}>
+            onPress={() => {
+              GravarDados,
+              navigation.navigate(Servico)
+            }}>
             <Text style={estilo.clicavel}>
               Entrar
             </Text>

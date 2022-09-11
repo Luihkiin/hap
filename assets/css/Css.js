@@ -21,6 +21,10 @@ const estilo = StyleSheet.create({
         justifyContent: 'center',
     },
 
+    header: {
+        paddingTop:100,
+    },
+
     imagem: {
         width: 150,
         height: 150,
