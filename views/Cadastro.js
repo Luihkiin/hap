@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from 'react';
-import { Alert, Text, View, TouchableOpacity, Image, TextInput } from "react-native";
+import { Alert, Text, View, TouchableOpacity, Image, TextInput, SafeAreaView } from "react-native";
 import { estilo } from '../assets/css/Css.js'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
@@ -23,7 +23,7 @@ export default function Cadastro({ navigation }) {
       colors={['#FFFFFF', '#00FFF0']}
       style={estilo.linearGradient}>
 
-      <View style={estilo.container}>
+      <SafeAreaView style={estilo.container}>
         <Text style={estilo.titulo}>
           Cadastro
         </Text>
@@ -36,15 +36,19 @@ export default function Cadastro({ navigation }) {
         <TouchableOpacity
           onPress={() => navigation.navigate(CadCli)}>
           <View style={estilo.caixaGrande}>
-            <Text style={estilo.titulo}>
+            <Text style={estilo.tituloIcon}>
               Cliente
             </Text>
+            <Image
+                style={estilo.icon}
+                source={require('../assets/img/icons/Cliente.png')}
+              ></Image>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate(CadFunc)}>
           <View style={estilo.caixaGrande}>
-            <Text style={estilo.titulo}>
+            <Text style={estilo.tituloIcon}>
               Funcionário
             </Text>
           </View>
@@ -57,7 +61,7 @@ export default function Cadastro({ navigation }) {
             </Text>
           </View>
         </TouchableOpacity>
-      </View>
+      </SafeAreaView>
     </LinearGradient>
   );
 }

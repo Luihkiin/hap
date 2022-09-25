@@ -33,6 +33,17 @@ const estilo = StyleSheet.create({
         marginTop: 50,        
     },
 
+    tituloIcon: {
+        fontSize: 30,
+        fontFamily: 'Poppins-Regular',
+    },
+
+    icon: {
+        width: 280,
+        heith: 280,
+        resizeMode: 'contain',
+    },
+
     titulo: {
         fontSize: 30,
         fontFamily: 'Poppins-Regular',
@@ -45,8 +56,10 @@ const estilo = StyleSheet.create({
 
     texto: {
         fontSize: 20,
-        alignSelf: 'flex-start',
-        marginBottom: 10
+        alignSelf: 'center',
+        marginBottom: 10,
+        paddingLeft:74,
+        paddingRight: 74
     },
 
     textoCentro: {
@@ -95,15 +108,18 @@ const estilo = StyleSheet.create({
     },
 
     caixaGrande: {
+        justifyContent: 'space-between',
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+        alignContents: 'center',
+        position: 'relative',
         backgroundColor: 'white',
         margin: 20,
         borderColor: 'black',
         borderWidth: 2,
         borderRadius: 5,
-        height: 140,
-        width: 250,
-        justifyContent: 'center',
-        alignItems: 'center', 
+        height: 170,
+        width: 250,        
     },
 })
 
