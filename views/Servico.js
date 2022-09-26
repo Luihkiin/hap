@@ -1,15 +1,18 @@
-import React, { useState, useEffect, useReducer, Component } from 'react';
-import { Alert, Text, View, TouchableOpacity, Image, TextInput, FlatList } from "react-native";
-import { estilo } from '../assets/css/Css.js'
-import { ListItem, SearchBar } from "react-native-elements";
-import filter from "lodash.filter";
+import React, { useEffect, useReducer } from 'react';
+import { Alert, Text, View, TouchableOpacity, Image, TextInput } from "react-native";
+import { estilo } from '../../assets/css/Css.js'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
-import Login from './Login';
+import Login from '../Login';
+import Pesquisa from './Servico/Pesquisa';
 
-export default function Servico({ navigation }) {
-
+export default function Servico ({ navigation }){
     return (
+        
+        
+        
+        
+        
         <LinearGradient
             colors={['#FFFFFF', '#00FFF0']}
             style={estilo.linearGradient}>
@@ -17,11 +20,21 @@ export default function Servico({ navigation }) {
                 Serviços
             </Text>
 
+            <View>
+
+            </View>
             <TouchableOpacity
                 onPress={() => navigation.navigate(Login)}
                 style={estilo.caixa}>
                 <Text style={estilo.textoCentro}>
                     Sair da conta
+                </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => navigation.navigate(Pesquisa)}
+                style={estilo.caixa}>
+                <Text style={estilo.textoCentro}>
+                    Pesquisar
                 </Text>
             </TouchableOpacity>
         </LinearGradient>
