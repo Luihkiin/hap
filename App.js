@@ -1,21 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Cadastro, Login, CadCli, CadFunc, Servico, EsqSenha } from './views';
 
 export default function App() {
+  const Stack = createStackNavigator();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+        <Stack.Screen name="Cadastro" component={Cadastro} options={{ headerShown: false}} />
+        <Stack.Screen name="CadCli" component={CadCli} options={{ headerShown: false}} />
+        <Stack.Screen name="CadFunc" component={CadFunc} options={{ headerShown: false}} />
+        <Stack.Screen name="Servico" component={Servico} options={{ headerShown: false}} />
+        <Stack.Screen name="EsqSenha" component={EsqSenha} options={{ headerShown: false}} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
