@@ -42,9 +42,9 @@ export default function Login({ navigation }) {
       .then((response)=>response.json())
       .then((response)=>{
         alert(response[0].Message)
-        if (response[0].Message === "Bem-Vindo") {
+        if (response[0].Message == "Bem-Vindo") {
           console.log("true")
-          navigation.navigate(CadFunc);
+          navigation.navigate(Servico);
         }
         console.log(Data);
       })

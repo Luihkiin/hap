@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Cadastro, Login, CadCli, CadFunc, Servico, EsqSenha } from './views';
+import { Cadastro, Login, CadCli, CadFunc, Servico, EsqSenha, Pesquisa } from './views';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -15,6 +15,7 @@ export default function App() {
         <Stack.Screen name="CadFunc" component={CadFunc} options={{ headerShown: false}} />
         <Stack.Screen name="Servico" component={Servico} options={{ headerShown: false}} />
         <Stack.Screen name="EsqSenha" component={EsqSenha} options={{ headerShown: false}} />
+        <Stack.Screen name="Pesquisa" component={Pesquisa} options={{ headerShown: false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

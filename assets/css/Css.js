@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
-import { useFonts} from 'expo-font';
+import { useFonts } from 'expo-font';
 
-export default function fonte(){
+export default function fonte() {
 
-const [fontsLoaded] = useFonts ({
-    'Poppins-Regular': require('../fonts/Poppins-Regular.ttf'),
-});
+    const [fontsLoaded] = useFonts({
+        'Poppins-Regular': require('../fonts/Poppins-Regular.ttf'),
+    });
 }
 
 const estilo = StyleSheet.create({
@@ -14,7 +14,7 @@ const estilo = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    
+
     container: {
         flex: 1,
         alignItems: 'center',
@@ -22,15 +22,15 @@ const estilo = StyleSheet.create({
     },
 
     header: {
-        paddingTop:100,
+        paddingTop: 100,
     },
 
     imagem: {
         width: 150,
         height: 150,
-        resizeMode: 'contain', 
+        resizeMode: 'contain',
         marginBottom: 30,
-        marginTop: 50,        
+        marginTop: 50,
     },
 
     tituloIcon: {
@@ -50,6 +50,11 @@ const estilo = StyleSheet.create({
         marginBottom: 20,
     },
 
+    topo: {
+        fontSize: 20,
+        paddingTop: 60,
+    },
+
     informacao: {
         margin: 20,
     },
@@ -58,7 +63,7 @@ const estilo = StyleSheet.create({
         fontSize: 20,
         alignSelf: 'center',
         marginBottom: 10,
-        paddingLeft:74,
+        paddingLeft: 74,
         paddingRight: 74
     },
 
@@ -91,15 +96,15 @@ const estilo = StyleSheet.create({
     botao: {
         marginTop: 50,
         marginBottom: 50,
-        backgroundColor:'white',
+        backgroundColor: 'white',
         width: 150,
         borderColor: 'black',
-        alignSelf:'center',
+        alignSelf: 'center',
         borderRadius: 10,
     },
 
     clicavel: {
-        alignSelf:'center',
+        alignSelf: 'center',
         fontSize: 15,
         fontFamily: 'Poppins-Regular',
         margin: 10,
@@ -119,8 +124,36 @@ const estilo = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 5,
         height: 170,
-        width: 250,        
+        width: 250,
+    },
+
+    footer: {
+        paddingBottom:10,
+        marginBottom:0,
+    },
+
+    input: {
+        flex: 1,
+        height: 50,
+        backgroundColor: '#FFFFFF',
+        margin: 30,
+        borderRadius: 5,
+        fontSize: 19,
+        paddingLeft: 15,
+        paddingRight: 15,
+        color: '#000000',
+    },
+    searchArea: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    orderButton: {
+        width: 32,
+        marginRight: 30,
+    },
+    list: {
+        flex: 1,
     },
 })
 
-export {estilo};
+export { estilo };

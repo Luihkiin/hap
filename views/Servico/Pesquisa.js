@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react';
 import { SafeAreaView, View, TextInput, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import ListItem from './components/listItem.js';
+import ListItem from './components/ListItem.js';
 import resultado from './resultado';
 
-const Pesquisa = () => {
+export default function Pesquisa ({ navigation }) {
   const [searchText, setSearchText] = useState('');
   const [list, setList] = useState(resultado);
 
@@ -90,5 +90,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
-export default Pesquisa;
