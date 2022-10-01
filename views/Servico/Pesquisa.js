@@ -1,17 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import {
-  SafeAreaView,
-  View,
-  TextInput,
-  FlatList,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import { SafeAreaView, View, TextInput, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import ListItem from './components/ListItem';
-
+import ListItem from './components/listItem.js';
 import resultado from './resultado';
 
 const Pesquisa = () => {

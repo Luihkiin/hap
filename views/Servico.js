@@ -1,18 +1,13 @@
 import React, { useEffect, useReducer } from 'react';
 import { Alert, Text, View, TouchableOpacity, Image, TextInput } from "react-native";
-import { estilo } from '../../assets/css/Css.js'
+import { estilo } from '../assets/css/Css.js'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
-import Login from '../Login';
-import Pesquisa from './Servico/Pesquisa';
+import Login from './Login';
+import Pesquisa from './servico/pesquisa.js';
 
 export default function Servico ({ navigation }){
-    return (
-        
-        
-        
-        
-        
+    return ( 
         <LinearGradient
             colors={['#FFFFFF', '#00FFF0']}
             style={estilo.linearGradient}>

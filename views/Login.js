@@ -15,7 +15,7 @@ export default function Login({ navigation }) {
   var [PWD, setPWD] = useState('');
 
   //Função Login
-  Login = () => {
+  FazerLogin = () => {
     if ((CPF.length == 0) || (PWD.length == 0)) {
       Alert.alert("Campos Faltando");
     } else {
@@ -42,9 +42,9 @@ export default function Login({ navigation }) {
       .then((response)=>response.json())
       .then((response)=>{
         alert(response[0].Message)
-        if (response[0].Message == "Bem-Vindo") {
+        if (response[0].Message === "Bem-Vindo") {
           console.log("true")
-          navigation.navigate(Servico);
+          navigation.navigate(CadFunc);
         }
         console.log(Data);
       })
@@ -86,7 +86,7 @@ export default function Login({ navigation }) {
             </TextInput>
           </View>
           <TouchableOpacity style={estilo.botao}
-            onPress={() => {Login()}}>
+            onPress={() => {FazerLogin()}}>
             <Text style={estilo.clicavel}>
               Entrar
             </Text>
