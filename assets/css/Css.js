@@ -1,12 +1,4 @@
 import { StyleSheet } from "react-native";
-import { useFonts } from 'expo-font';
-
-export default function fonte() {
-
-    const [fontsLoaded] = useFonts({
-        'Poppins-Regular': require('../fonts/Poppins-Regular.ttf'),
-    });
-}
 
 const estilo = StyleSheet.create({
     linearGradient: {
@@ -19,6 +11,12 @@ const estilo = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+
+    rowContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: 'center',
     },
 
     header: {
@@ -35,7 +33,6 @@ const estilo = StyleSheet.create({
 
     tituloIcon: {
         fontSize: 30,
-        fontFamily: 'Poppins-Regular',
     },
 
     icon: {
@@ -46,7 +43,6 @@ const estilo = StyleSheet.create({
 
     titulo: {
         fontSize: 30,
-        fontFamily: 'Poppins-Regular',
         marginBottom: 20,
     },
 
@@ -82,20 +78,9 @@ const estilo = StyleSheet.create({
         justifyContent: 'center'
     },
 
-    caixa: {
-        backgroundColor: 'white',
-        margin: 10,
-        borderColor: 'black',
-        borderWidth: 1,
-        borderRadius: 10,
-        height: 40,
-        width: 250,
-        justifyContent: 'center',
-    },
-
     botao: {
-        marginTop: 50,
-        marginBottom: 50,
+        marginTop: 10,
+        marginBottom: 10,
         backgroundColor: 'white',
         width: 150,
         borderColor: 'black',
@@ -106,18 +91,37 @@ const estilo = StyleSheet.create({
     clicavel: {
         alignSelf: 'center',
         fontSize: 15,
-        fontFamily: 'Poppins-Regular',
         margin: 10,
         justifyContent: 'center',
         alignItems: 'center',
     },
+    
+    caixa: {
+        backgroundColor: 'white',
+        margin: 10,
+        borderColor: 'black',
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 5,
+        height: 40,
+        width: 250,
+        justifyContent: 'center',
+    },
+
+    caixaPequena:{
+        backgroundColor: 'white',
+        margin: 10,
+        borderColor: 'black',
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 5,
+        height: 40,
+        width: 80,
+        justifyContent: 'center',
+        textAlign:'center',
+    },
 
     caixaGrande: {
-        justifyContent: 'space-between',
-        flexDirection: 'column',
-        flexWrap: 'wrap',
-        alignContents: 'center',
-        position: 'relative',
         backgroundColor: 'white',
         margin: 20,
         borderColor: 'black',
@@ -128,8 +132,8 @@ const estilo = StyleSheet.create({
     },
 
     footer: {
-        paddingBottom:10,
-        marginBottom:0,
+        paddingBottom: 10,
+        marginBottom: 0,
     },
 
     input: {
@@ -154,6 +158,7 @@ const estilo = StyleSheet.create({
     list: {
         flex: 1,
     },
+
 })
 
 export { estilo };

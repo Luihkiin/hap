@@ -2,7 +2,6 @@ import React, { useState, useEffect, useReducer } from 'react';
 import { SafeAreaView, Alert, Text, View, TouchableOpacity, Image, TextInput, FlatList } from "react-native";
 import { estilo } from '../assets/css/Css.js'
 import { LinearGradient } from 'expo-linear-gradient';
-import { useFonts } from 'expo-font';
 import Login from './Login';
 import Pesquisa from './Servico/Pesquisa.js';
 import { StatusBar } from 'expo-status-bar';
