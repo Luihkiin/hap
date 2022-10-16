@@ -7,9 +7,6 @@ import Button from './servico/components/Button';
 
 export default function Perfil({ navigation }) {
   
-  
-
-  
 //front-end
   return (
     <LinearGradient colors={['#FFFFFF', '#00FFF0']}
