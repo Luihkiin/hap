@@ -1,27 +1,29 @@
 <?php
-$con = mysqli_connect("localhost", "root", "");
-$database = mysqli_select_db($con, "hap");
 
-$encodedData = file_get_contents('php://input');
-$decodedData = json_decode($encodedData, true);
+include('conexao.php');
 
 $cpf = $decodedData["CPF"];
 $senha = $decodedData["PWD"];
 
-$SQL = "SELECT * FROM pessoa WHERE rg_pessoa = '$cpf'";
+$SQL = "SELECT * FROM cliente WHERE CLI_ST_CPF = '$cpf'";
 $exeSQL = mysqli_query($con, $SQL);
 $checkCPF = mysqli_num_rows($exeSQL);
   
 if ($checkCPF != 0) {
     $arrayu = mysqli_fetch_array($exeSQL);
-    if ($arrayu['senha'] != $senha) {
+    if ($arrayu['CLI_ST_SENHA'] != $senha) {
         $Message = 'Senha Incorreta';
     } else {
-        $Message = 'Bem-Vindo';
-    }
+        $SQLNOME = "SELECT CLI_ST_NOME FROM cliente WHERE CLI_ST_CPF = '$cpf'";
+        $exeNOME = mysqli_query($con, $SQLNOME);
+        if ($nome = $exeNOME->fetch_assoc()) {
+            $Message = ('Bem-Vindo');  
+            }
+        }
 } else {
     $Message = "Conta não cadastrada";
 }
+
 
 $response[] = array("Message" => $Message);
 echo json_encode($response);
