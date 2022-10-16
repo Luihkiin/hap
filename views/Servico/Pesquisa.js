@@ -7,6 +7,7 @@ import ListItem from './components/ListItem.js';
 import resultado from './resultado';
 
 export default function Pesquisa ({ navigation }) {
+  
   const [searchText, setSearchText] = useState('');
   const [list, setList] = useState(resultado);
 

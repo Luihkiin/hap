@@ -91,7 +91,7 @@ export default function Cadastro({ navigation }) {
         Alert.alert("Campos Faltando", "Insira as informações e tente novamente!");
       } else {
         //Variável que conecta com o cadastro.php, que está dentro de htdocs
-        var APIURL = new URL('http://192.168.0.100:80/cadastro.php');
+        var APIURL = new URL('http://127.0.0.1');
 
         var headers = {
           'Accept': 'application/json',

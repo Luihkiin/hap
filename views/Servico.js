@@ -3,11 +3,11 @@ import { SafeAreaView, Alert, Text, View, TouchableOpacity, Image, TextInput, Fl
 import { estilo } from '../assets/css/Css.js'
 import { LinearGradient } from 'expo-linear-gradient';
 import Login from './Login';
-import Pesquisa from './Servico/Pesquisa.js';
+import Pesquisa from './servico/Pesquisa.js';
 import { StatusBar } from 'expo-status-bar';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import ListItem from './Servico/components/ListItem.js';
-import resultado from './Servico/resultado';
+import ListItem from './servico/components/ListItem.js';
+import resultado from './servico/resultado';
 
 export default function Servico({ navigation }) {
     const [searchText, setSearchText] = useState('');
