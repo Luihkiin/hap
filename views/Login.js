@@ -20,7 +20,7 @@ export default function Login({ navigation }) {
       Alert.alert("Campos Faltando");
     } else {
       //Variável que conecta com o login.php, que está dentro de htdocs
-      var APIURL = new URL('http://192.168.0.100:80/login.php');
+      var APIURL = new URL('http://192.168.0.100:80/hap/login.php');
 
       var headers = {
         'Accept' : 'application/json',

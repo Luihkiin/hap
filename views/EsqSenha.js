@@ -14,7 +14,7 @@ export default function EsqSenha({ navigation }) {
             Alert.alert("Campos Faltando", "Insira seu email e tente novamente!");
         } else {
             //Variável que conecta com o login.php, que está dentro de htdocs
-            var APIURL = new URL('http://192.168.0.104:80/login.php');
+            var APIURL = new URL('http://192.168.0.100:80/hap/esqSenha.php');
 
             var headers = {
                 'Accept': 'application/json',
@@ -37,7 +37,7 @@ export default function EsqSenha({ navigation }) {
                     alert(response[0].Message)
                     if (response[0].Message == "Um email de recuperação será enviado dentro de alguns momentos, aguarde!") {
                         console.log("true")
-                        navigation.navigate(Servico);
+                        navigation.navigate(Login);
                     }
                     console.log(Data);
                 })

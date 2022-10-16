@@ -4,7 +4,6 @@ import { estilo } from '../assets/css/Css.js'
 import { LinearGradient } from 'expo-linear-gradient';
 import { RadioButton } from 'react-native-paper';
 import Login from './Login';
-import CadastroFunc from './CadastroFunc';
 import SelectDropdown from 'react-native-select-dropdown';
 import { setStatusBarBackgroundColor } from 'expo-status-bar';
 
@@ -31,12 +30,10 @@ export default function Cadastro({ navigation }) {
   /*A variável id365 define o status da pessoa
   1 - Ativo | 2 - Inativo | 3 - Aguardando aprovação | 4 - Banido*/
   var [id365] = useState('');
-  //Essas variáveis pódem ser utilizadas depois do cadastro (na parte de personalização do perfil)
-  var [fotoRg] = useState('');
-  var [fotoPerfil] = useState('');
+ 
   /*Variavel que determina cliente ou funcionário.
-  0 - Cliente | 1 - Funcionário */
-  const [perfil, setPer] = React.useState('1');
+  1 - Cliente | 2 - Funcionário */
+  var [perfil, setPer] = useState('1');
   /* Variáveis para endereço
   var [estado, setEst] = useState('');
   var [cidade, setCid] = useState('');
@@ -45,7 +42,9 @@ export default function Cadastro({ navigation }) {
   var [numero, setNum] = useState('');
   var [complemento, SetCom] = useState('');
   var [cep, setCep] = useState('');
-  */
+   //Essas variáveis pódem ser utilizadas depois do cadastro (na parte de personalização do perfil)
+  var [fotoRg] = useState('');
+  var [fotoPerfil] = useState('');
   /*Variáveis para funcionário. Pode ser atribuída no perfil, assim ele é cadastrado como ativo e ao inserir essas informações, 
   irá para o Id: aguardando aprovação.
   var [curriculo, setCur] = useState('');
@@ -65,9 +64,9 @@ export default function Cadastro({ navigation }) {
 
   //If para definição de perfil de cliente ou funcionário
   if (perfil === '1') {
-    id365 = '1'; //Cliente
+    id365 = '1'; //Cliente aprovado
   } else {
-    id365 = '3'; //Funcionário
+    id365 = '3'; //Funcionário aguardando aprovação
   }
 
   //Função para definir data Nascimento
@@ -91,7 +90,7 @@ export default function Cadastro({ navigation }) {
         Alert.alert("Campos Faltando", "Insira as informações e tente novamente!");
       } else {
         //Variável que conecta com o cadastro.php, que está dentro de htdocs
-        var APIURL = new URL('http://192.168.0.100:80/cadastro.php');
+        var APIURL = new URL('http://192.168.0.100:80/hap/cadastro.php');
 
         var headers = {
           'Accept': 'application/json',
