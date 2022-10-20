@@ -3,15 +3,18 @@ import { SafeAreaView, Alert, Text, View, TouchableOpacity, Image, TextInput, Fl
 import { estilo } from '../assets/css/Css.js'
 import { LinearGradient } from 'expo-linear-gradient';
 import Login from './Login';
-import Pesquisa from './servico/Pesquisa.js';
+import Pesquisa from './Servico/Pesquisa.js';
 import { StatusBar } from 'expo-status-bar';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import ListItem from './servico/components/ListItem.js';
-import resultado from './servico/resultado';
+import ListItem from './Servico/components/ListItem.js';
+import resultado from './Servico/resultado';
+import Perfil from './Perfil';
 
 export default function Servico({ navigation }) {
+    //DECLARAÇÃO DAS VARIÁVEIS
     const [searchText, setSearchText] = useState('');
     const [list, setList] = useState(resultado);
+    var [nome, setNome] = useState('');
 
     useEffect(() => {
         if (searchText === '') {
@@ -39,9 +42,18 @@ export default function Servico({ navigation }) {
             colors={['#FFFFFF', '#00FFF0']}
             style={estilo.linearGradient}>
             <Text style={estilo.topo}>
-                Bem-vindo NOME
+                Bem-vindo
             </Text>
-                        
+
+            <View>
+                <TouchableOpacity
+                onPress={()=>navigation.navigate(Perfil)}>
+                    <Text>
+                        Meu Perfil
+                    </Text>
+                </TouchableOpacity>
+            </View>
+
             <View style={estilo.container}>
                 <SafeAreaView>
                     <View style={estilo.searchArea}>

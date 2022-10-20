@@ -17,7 +17,7 @@ export default function Login({ navigation }) {
   //Função Login
   FazerLogin = () => {
     if ((CPF.length == 0) || (PWD.length == 0)) {
-      Alert.alert("Campos Faltando");
+      Alert.alert("Campos Faltando", "Insira seu CPF ou senha!");
     } else {
       //Variável que conecta com o login.php, que está dentro de htdocs
       var APIURL = new URL('http://192.168.0.100:80/hap/login.php');
@@ -39,10 +39,10 @@ export default function Login({ navigation }) {
         headers: headers,
         body: JSON.stringify(Data),
       })
-      .then((response)=>response.json())
-      .then((response)=>{
-        alert(response[0].Message)
-        if (response[0].Message == "Bem-Vindo") {
+      .then((resposta)=>resposta.json())
+      .then((resposta)=>{
+        alert((resposta[0].Message))
+        if (resposta[0].Message === "Bem-Vindo") {
           console.log("true")
           navigation.navigate(Servico);
         }
@@ -63,8 +63,9 @@ export default function Login({ navigation }) {
       <View style={estilo.container}>
         <Image
           style={estilo.imagem}
-          source={require('../assets/img/Logo.png')}
-        ></Image>
+          source={require('../assets/img/Logo.png')}>
+        </Image>
+        
         <View style={estilo.informacao}>
           <Text style={estilo.texto}>
             CPF

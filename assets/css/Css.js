@@ -95,7 +95,7 @@ const estilo = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    
+
     caixa: {
         backgroundColor: 'white',
         margin: 10,
@@ -108,7 +108,7 @@ const estilo = StyleSheet.create({
         justifyContent: 'center',
     },
 
-    caixaPequena:{
+    caixaPequena: {
         backgroundColor: 'white',
         margin: 10,
         borderColor: 'black',
@@ -118,7 +118,7 @@ const estilo = StyleSheet.create({
         height: 40,
         width: 80,
         justifyContent: 'center',
-        textAlign:'center',
+        textAlign: 'center',
     },
 
     caixaGrande: {
@@ -159,6 +159,14 @@ const estilo = StyleSheet.create({
         flex: 1,
     },
 
+    logo: {
+        width: 200,
+        height: 200,
+        borderRadius: 100,
+        marginTop: 0,
+        marginBottom: 30,
+        backgroundColor: '#FFFFFF',
+    },
 })
 
 export { estilo };
