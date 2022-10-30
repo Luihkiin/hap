@@ -1,20 +1,24 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import { SafeAreaView, Alert, Text, View, TouchableOpacity, Image, TextInput, FlatList } from "react-native";
-import { estilo } from '../assets/css/Css.js'
+import { estilo } from '../../assets/css/Css.js'
 import { LinearGradient } from 'expo-linear-gradient';
-import Login from './Login';
-import Pesquisa from './Servico/Pesquisa.js';
+import Login from '../Login';
+import Pesquisa from '../Servico/Pesquisa.js';
 import { StatusBar } from 'expo-status-bar';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import ListItem from './Servico/components/ListItem.js';
-import resultado from './Servico/resultado';
-import Perfil from './Perfil';
+import ListItem from '../Servico/components/ListItem.js';
+import resultado from '../Servico/resultado';
+import Perfil from '../Perfil';
+import AdicionarServico from './AdicionarServico';
+import { ScrollView } from 'react-native-gesture-handler';
 
-export default function Servico({ navigation }) {
+export default function ServicoFunc({ route, navigation }) {
     //DECLARAÇÃO DAS VARIÁVEIS
     const [searchText, setSearchText] = useState('');
     const [list, setList] = useState(resultado);
     var [nome, setNome] = useState('');
+    const {CPFMask} = route.params;
+    const {cpf} = route.params;
 
     useEffect(() => {
         if (searchText === '') {
@@ -41,21 +45,12 @@ export default function Servico({ navigation }) {
         <LinearGradient
             colors={['#FFFFFF', '#00FFF0']}
             style={estilo.linearGradient}>
-            <Text style={estilo.topo}>
-                Bem-vindo
-            </Text>
+            <View style={estilo.serviceContainer}>
+                <Text style={estilo.centerTitle}>
+                    Bem-vindo {CPFMask}
+                </Text>
+                <View style={estilo.serviceContainer}>
 
-            <View>
-                <TouchableOpacity
-                onPress={()=>navigation.navigate(Perfil)}>
-                    <Text>
-                        Meu Perfil
-                    </Text>
-                </TouchableOpacity>
-            </View>
-
-            <View style={estilo.container}>
-                <SafeAreaView>
                     <View style={estilo.searchArea}>
                         <TextInput
                             style={estilo.input}
@@ -68,7 +63,7 @@ export default function Servico({ navigation }) {
                             <MaterialCommunityIcons
                                 service="Ordem alfabética"
                                 size={32}
-                                color="#888"
+                                color="black"
                             />
                         </TouchableOpacity>
                     </View>
@@ -80,18 +75,28 @@ export default function Servico({ navigation }) {
                         keyExtractor={(item) => item.id}
                     />
                     <StatusBar style="light" />
-                </SafeAreaView>
-            </View>
 
-            <View
-                style={estilo.footer}>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate(Login)}
-                    style={estilo.caixa}>
-                    <Text style={estilo.textoCentro}>
-                        Sair da conta
-                    </Text>
-                </TouchableOpacity>
+                </View>
+                <View style={estilo.rowContainer}>
+                    <View>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate(AdicionarServico)}
+                            style={estilo.smallButton}>
+                            <Text style={estilo.buttonText}>
+                                Adicionar Serviços
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('Perfil', {cpf})}
+                            style={estilo.smallButton}>
+                            <Text style={estilo.buttonText}>
+                                Meu Perfil
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </View>
         </LinearGradient>
     )

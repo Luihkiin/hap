@@ -6,15 +6,18 @@ import { RadioButton } from 'react-native-paper';
 import Login from './Login';
 import SelectDropdown from 'react-native-select-dropdown';
 import { setStatusBarBackgroundColor } from 'expo-status-bar';
+import { TextInputMask } from 'react-native-masked-text';
 
 export default function Cadastro({ navigation }) {
 
   //VARIÁVEIS
   var [sexo, setSex] = useState('');
   var [nome, setNom] = useState('');
-  var [cpf, setCpf] = useState('');
+  var [cpfMask, setCpfMask] = useState('');
+  var cpf = cpfMask.replace(/[-.]/g, '');
   var [email, setEma] = useState('');
-  var [celular, setCel] = useState('');
+  var [celMask, setCelMask] = useState('');
+  var celular = celMask.replace(/[()-]/g, '');
   var [pwd, setPwd] = useState('');
   var [diaNasc, setDiaNasc] = useState('');
   var [mesNasc, setMesNasc] = useState('');
@@ -30,26 +33,10 @@ export default function Cadastro({ navigation }) {
   /*A variável id365 define o status da pessoa
   1 - Ativo | 2 - Inativo | 3 - Aguardando aprovação | 4 - Banido*/
   var [id365] = useState('');
- 
+
   /*Variavel que determina cliente ou funcionário.
   1 - Cliente | 2 - Funcionário */
   var [perfil, setPer] = useState('1');
-  /* Variáveis para endereço
-  var [estado, setEst] = useState('');
-  var [cidade, setCid] = useState('');
-  var [bairro, setBai] = useState('');
-  var [rua, setRua] = useState('');
-  var [numero, setNum] = useState('');
-  var [complemento, SetCom] = useState('');
-  var [cep, setCep] = useState('');
-   //Essas variáveis pódem ser utilizadas depois do cadastro (na parte de personalização do perfil)
-  var [fotoRg] = useState('');
-  var [fotoPerfil] = useState('');
-  /*Variáveis para funcionário. Pode ser atribuída no perfil, assim ele é cadastrado como ativo e ao inserir essas informações, 
-  irá para o Id: aguardando aprovação.
-  var [curriculo, setCur] = useState('');
-  var [cpnj, setCnp] = useState('');
-  var [antCriminal, setAnc] = useState('');*/
 
   //Variável para comparação de senha
   var [pwdC, setPwdC] = useState('');
@@ -89,9 +76,6 @@ export default function Cadastro({ navigation }) {
       if ((nome.length == 0) || (pwd.length == 0) || (cpf.length == 0) || (email.length == 0)) {
         Alert.alert("Campos Faltando", "Insira as informações e tente novamente!");
       } else {
-        //Variável que conecta com o cadastro.php, que está dentro de htdocs
-        var APIURL = new URL('http://192.168.0.100:80/hap/cadastro.php');
-
         var headers = {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -113,7 +97,7 @@ export default function Cadastro({ navigation }) {
         };
 
         //Função Fetch (Leva os dados para o PHP)
-        fetch(APIURL, {
+        fetch('http://192.168.0.100:80/hap/cadastro.php', {
           method: 'POST',
           headers: headers,
           body: JSON.stringify(Data),
@@ -140,13 +124,21 @@ export default function Cadastro({ navigation }) {
     <LinearGradient
       colors={['#FFFFFF', '#00FFF0']}
       style={estilo.linearGradient}>
-      <SafeAreaView style={estilo.container}>
-        <Text style={estilo.titulo}>
+
+      <View>
+        <Image
+          style={estilo.image}
+          source={require('../assets/img/icons/user.png')}>
+        </Image>
+      </View>
+
+      <View style={estilo.singUpContainer}>
+        <Text style={estilo.centerTitle}>
           Cadastro
         </Text>
         <ScrollView>
           <View>
-            <Text style={estilo.texto}>
+            <Text style={estilo.text}>
               Você será
             </Text>
             <View style={estilo.rowContainer}>
@@ -172,14 +164,12 @@ export default function Cadastro({ navigation }) {
             </View>
           </View>
           <View style={estilo.container}>
-            <Text style={estilo.texto}>
-              Nome Completo
-            </Text>
             <TextInput
-              style={estilo.caixa}
-              onChangeText={(text) => setNom(text)}>
+              style={estilo.box}
+              onChangeText={(text) => setNom(text)}
+              placeholder="Nome Completo">
             </TextInput>
-            <Text style={estilo.texto}>
+            <Text style={estilo.text}>
               Sexo
             </Text>
             <View style={estilo.rowContainer}>
@@ -211,35 +201,31 @@ export default function Cadastro({ navigation }) {
                 color={'black'}
               />
             </View>
-            <Text style={estilo.texto}>
-              CPF
-            </Text>
+            <TextInputMask
+              style={estilo.box}
+              type={'cpf'}
+              value={cpfMask}
+              onChangeText={(text) => setCpfMask(text)}
+              placeholder="CPF"
+            />
             <TextInput
-              style={estilo.caixa}
-              onChangeText={(text) => setCpf(text)}
-              keyboardType='numeric'>
+              style={estilo.box}
+              onChangeText={(text) => setEma(text)}
+              placeholder="E-mail">
             </TextInput>
-            <Text style={estilo.texto}>
-              E-Mail
-            </Text>
-            <TextInput
-              style={estilo.caixa}
-              onChangeText={(text) => setEma(text)}>
-            </TextInput>
-            <Text style={estilo.texto}>
-              Celular
-            </Text>
-            <TextInput
-              style={estilo.caixa}
-              onChangeText={(text) => setCel(text)}
-              keyboardType='numeric'>
-            </TextInput>
-            <Text style={estilo.texto}>
+            <TextInputMask
+              style={estilo.box}
+              type={'cel-phone'}
+              value={celMask}
+              onChangeText={(text) => setCelMask(text)}
+              placeholder="Celular"
+            />
+            <Text style={estilo.text}>
               Data de Nascimento
             </Text>
             <View style={estilo.rowContainer}>
               <SelectDropdown
-                buttonStyle={estilo.caixaPequena}
+                buttonStyle={estilo.dateBox}
                 defaultButtonText={"Dia"}
                 data={diaSeletor}
                 onSelect={(selectedItem, index) => {
@@ -259,7 +245,7 @@ export default function Cadastro({ navigation }) {
                 }}
               />
               <SelectDropdown
-                buttonStyle={estilo.caixaPequena}
+                buttonStyle={estilo.dateBox}
                 defaultButtonText={"Mês"}
                 data={mesSeletor}
                 onSelect={(selectedItem, index) => {
@@ -277,38 +263,34 @@ export default function Cadastro({ navigation }) {
                 }}
               />
               <TextInput
-                style={estilo.caixaPequena}
+                style={estilo.dateBox}
                 onChangeText={(text) => (setAnoNasc(text), ConversorData())}
                 placeholder="Ano"
                 keyboardType='numeric'>
               </TextInput>
             </View>
-            <Text style={estilo.texto}>
-              Senha
-            </Text>
             <TextInput
-              style={estilo.caixa}
+              style={estilo.box}
               onChangeText={(text) => setPwd(text)}
-              secureTextEntry={true}>
+              secureTextEntry={true}
+              placeholder="Senha">
             </TextInput>
-            <Text style={estilo.texto}>
-              Confirmar Senha
-            </Text>
             <TextInput
-              style={estilo.caixa}
+              style={estilo.box}
               onChangeText={(text) => setPwdC(text)}
-              secureTextEntry={true}>
+              secureTextEntry={true}
+              placeholder="Confirme sua senha">
             </TextInput>
+            <TouchableOpacity
+              onPress={() => ConfirmarInfo()}
+              style={estilo.singUpButton}>
+              <Text style={estilo.buttonText}>
+                Confirmar Cadastro
+              </Text>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            onPress={() => ConfirmarInfo()}
-            style={estilo.botao}>
-            <Text style={estilo.clicavel}>
-              Confirmar Cadastro
-            </Text>
-          </TouchableOpacity>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     </LinearGradient >
   );
 }

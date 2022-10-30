@@ -51,23 +51,29 @@ export default function EsqSenha({ navigation }) {
         <LinearGradient
             colors={['#FFFFFF', '#00FFF0']}
             style={estilo.linearGradient}>
-            <Text style={estilo.titulo}>
-                Recuperar Senha
-            </Text>
-            <Text>
-                Email Cadastrado
-            </Text>
-            <TextInput
-                style={estilo.caixa}
-                onChangeText={(text) => setEma(text)}>
-            </TextInput>
-            <TouchableOpacity
-                style={estilo.botao}
-                onPress={() => RecuperarSenha()}>
-                <Text style={estilo.clicavel}>
-                    Confirmar
+            <View>
+                <Image
+                    style={estilo.image}
+                    source={require('../assets/img/icons/user.png')}>
+                </Image>
+            </View>
+            <View style={estilo.singUpContainer}>
+                <Text style={estilo.centerTitle}>
+                    Recuperar Senha
                 </Text>
-            </TouchableOpacity>
+                <TextInput
+                    style={estilo.box}
+                    onChangeText={(text) => setEma(text)}
+                    placeholder="Email Cadastrado">
+                </TextInput>
+                <TouchableOpacity
+                    style={estilo.button}
+                    onPress={() => RecuperarSenha()}>
+                    <Text style={estilo.buttonText}>
+                        Confirmar
+                    </Text>
+                </TouchableOpacity>
+            </View>
         </LinearGradient>
     )
 }

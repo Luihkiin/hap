@@ -9,7 +9,10 @@ const estilo = StyleSheet.create({
 
     container: {
         flex: 1,
-        alignItems: 'center',
+        position: 'relative',
+        top: 500,
+        borderRadius: 50,
+        backgroundColor: '#fff',
         justifyContent: 'center',
     },
 
@@ -23,44 +26,81 @@ const estilo = StyleSheet.create({
         paddingTop: 100,
     },
 
-    imagem: {
-        width: 150,
-        height: 150,
-        resizeMode: 'contain',
-        marginBottom: 30,
-        marginTop: 50,
-    },
-
-    tituloIcon: {
-        fontSize: 30,
-    },
-
-    icon: {
-        width: 280,
-        heith: 280,
-        resizeMode: 'contain',
-    },
-
-    titulo: {
-        fontSize: 30,
-        marginBottom: 20,
-    },
-
-    topo: {
-        fontSize: 20,
+    footer: {
         paddingTop: 60,
     },
 
-    informacao: {
+    textFooter: {
+        fontSize: 15,
+    },
+
+    image: {
+        width: 150,
+        height: 150,
+        resizeMode: 'contain',
+        marginTop: 100,
+    },
+
+    centerTitle: {
+        fontSize: 30,
+        textAlign: 'center',
+        paddingTop: 80,
+        //margin: 30,
+        fontWeight: 'bold',
+    },
+
+    loginContainer: {
+        backgroundColor: 'white',
+        width: '100%',
+        height: '70%',
+        position: 'relative',
+        top: 60,
+        borderRadius: 50,
+    },
+
+    singUpContainer: {
+        backgroundColor: 'white',
+        width: '100%',
+        flex: 1,
+        position: 'relative',
+        top: 60,
+        borderRadius: 50,
+    },
+
+    infoContainer: {
+        borderWidth: 2,
+        margin: 10,
+        borderRadius: 20,
+        borderColor: '#A2FFF0',
+        padding: 10,
+    },
+
+    serviceContainer: {
+        backgroundColor: 'white',
+        width: '100%',
+        flex: 1,
+        position: 'relative',
+        top: 0,
+    },
+
+    text: {
+        fontSize: 15,
+        textAlign: 'center',
         margin: 20,
     },
 
-    texto: {
+    dataText: {
         fontSize: 20,
-        alignSelf: 'center',
-        marginBottom: 10,
-        paddingLeft: 74,
-        paddingRight: 74
+        textAlign: 'left',
+        marginLeft: 20,
+        marginTop: 5,
+    },
+
+    dataTitle: {
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 10,
+        fontWeight: 'bold',
     },
 
     textoCentro: {
@@ -78,45 +118,63 @@ const estilo = StyleSheet.create({
         justifyContent: 'center'
     },
 
-    botao: {
-        marginTop: 10,
-        marginBottom: 10,
-        backgroundColor: 'white',
+    smallButton: {
+        backgroundColor: '#A2FFF0',
+        height: 60,
+        margin: 15,
         width: 150,
-        borderColor: 'black',
         alignSelf: 'center',
-        borderRadius: 10,
+        justifyContent: 'center',
+        borderRadius: 20,
     },
 
-    clicavel: {
+    button: {
+        marginTop: 50,
+        backgroundColor: '#A2FFF0',
+        height: 60,
+        width: '80%',
         alignSelf: 'center',
+        justifyContent: 'center',
+        borderRadius: 20,
+    },
+
+    singUpButton: {
+        //backgroundColor: 'white',
+        backgroundColor: '#A2FFF0',
+        height: 60,
+        width: '80%',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        borderRadius: 20,
+        marginTop: 40,
+        marginBottom: 80,
+    },
+
+    buttonText: {
         fontSize: 15,
-        margin: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
+        textAlign: 'center',
+        fontWeight: 'bold',
     },
 
-    caixa: {
-        backgroundColor: 'white',
+    box: {
+        //backgroundColor: 'white',
+        backgroundColor: '#A2FFF0',
         margin: 10,
-        borderColor: 'black',
-        borderWidth: 1,
-        borderRadius: 10,
-        padding: 5,
-        height: 40,
-        width: 250,
+        alignSelf: 'center',
+        borderRadius: 20,
+        padding: 15,
+        height: 60,
+        width: '80%',
         justifyContent: 'center',
     },
 
-    caixaPequena: {
-        backgroundColor: 'white',
+    dateBox: {
+        backgroundColor: '#A2FFF0',
         margin: 10,
-        borderColor: 'black',
-        borderWidth: 1,
-        borderRadius: 10,
+        borderRadius: 15,
         padding: 5,
-        height: 40,
-        width: 80,
+        height: 60,
+        width: '23%',
         justifyContent: 'center',
         textAlign: 'center',
     },
@@ -131,26 +189,28 @@ const estilo = StyleSheet.create({
         width: 250,
     },
 
-    footer: {
-        paddingBottom: 10,
-        marginBottom: 0,
-    },
-
     input: {
         flex: 1,
         height: 50,
         backgroundColor: '#FFFFFF',
-        margin: 30,
+        marginBottom: 30,
+        marginTop: 20,
+        marginLeft: 30,
         borderRadius: 5,
         fontSize: 19,
         paddingLeft: 15,
         paddingRight: 15,
         color: '#000000',
+        textAlign: 'center',
     },
     searchArea: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'center',
+        width: 400,
+        marginLeft: 30,
     },
+
     orderButton: {
         width: 32,
         marginRight: 30,

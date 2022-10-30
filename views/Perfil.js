@@ -1,77 +1,100 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect, useReducer, Component } from 'react';
-import { Text, View, Image, SafeAreaView } from 'react-native';
+import { Text, View, Image, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
 import { estilo } from '../assets/css/Css'
 import { LinearGradient } from 'expo-linear-gradient';
 import Button from './Servico/components/Button';
 import { sortedLastIndexOf } from 'lodash';
+import { ActivityIndicator } from 'react-native';
 
-export default function Perfil({ navigation }) {
+export default function Perfil({ route, navigation }) {
 
-  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [infos, setInfos] = useState([]);
+  const { cpf } = route.params;
 
-  //Variável que conecta com o perfil.php, que está dentro de htdocs
-  var APIURL = new URL('http://192.168.0.100:80/hap/perfil.php');
+  //Processamento
+  const coletarInfos = async () => {
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
 
-  //Função Fetch (Leva os dados para o PHP)
+    var Data = {
+      cpf: cpf,
+    };
+
+    const response = await fetch('http://192.168.0.100:80/hap/perfil/perfilSelect.php', {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(Data),
+    })
+      const jsonData = await response.json()
+      //console.log('jsonData', jsonData)
+      setInfos(jsonData)
+      setLoading(false);
+      console.log(infos)
+  }
+
   useEffect(() => {
-    fetch(APIURL)
-      .then(resposta => {
-        if (resposta.ok) {
-          return resposta.json()
-        }
-        throw resposta;
-      })
-        .then(data => {
-          setData(data);
-        })
-        .catch(error => {
-          console.error("Erro encontrado: ", error);
-          setError(error);
-        })
-        .finally(() => {
-          setLoading(false);
-        })
+    coletarInfos();
   }, [])
-  /*resposta.json())
-.then((resposta) => resposta.json())
-.then((json) => setNome(json))
-.catch((error) => {
-  console.log("Erro encontrado: " + error);
-})*/
+
+  if (loading) {
+    return (
+      <View>
+        <ActivityIndicator
+          style={estilo.container}
+          size="large"
+          loading={loading} />
+      </View>
+    )
+  }
 
   //front-end
   return (
-
     <LinearGradient colors={['#FFFFFF', '#00FFF0']}
       style={estilo.linearGradient}>
-      <SafeAreaView style={estilo.container}>
-        <Text style={estilo.titulo}>Nome: {nome}</Text>
-        <Text style={estilo.titulo}>Sexo: </Text>
-        <StatusBar style="auto" />
-        <Image style={estilo.logo} source={require('../assets/img/Person.png')} />
+      <Image style={estilo.image} source={require('../assets/img/Person.png')} />
+      <ScrollView style={estilo.loginContainer}>
         <View>
-          <Text style={estilo.textoCentro}> Dados Cadastrados: </Text>
+          <Text style={estilo.centerTitle}>Dados Cadastrados: </Text>
+          <View style={estilo.infoContainer}>
+            <Text style={estilo.dataTitle}>Dados pessoais </Text>
+            <Text style={estilo.dataText}>Nome: {infos["Nome"]}</Text>
+            <Text style={estilo.dataText}>Sexo: {infos["Sexo"]}</Text>
+            <Text style={estilo.dataText}>CPF: {infos["CPF"]}</Text>
+            <Text style={estilo.dataText}>Data Nascimento: {infos["DataNasc"]} </Text>
+            <Text style={estilo.dataText}>Idade: {infos["Idade"]}</Text>
+            <Text style={estilo.dataText}>Versão Confort: {infos["Premium"]}</Text>
+          </View>
+          <View style={estilo.infoContainer}>
+            <Text style={estilo.dataTitle}>Informações de Contato</Text>
+            <Text style={estilo.dataText}>Email: {infos["Email"]}</Text>
+            <Text style={estilo.dataText}>Celular: {infos["Celular"]}</Text>
+          </View>
+          <View style={estilo.infoContainer}>
+            <Text style={estilo.dataTitle}>
+              Endereço Cadastrado:
+            </Text>
+            <Text style={estilo.dataText}>Cep: {infos["CEP"]}</Text>
+            <Text style={estilo.dataText}>Estado: </Text>
+            <Text style={estilo.dataText}>Cidade: </Text>
+            <Text style={estilo.dataText}>Bairro: </Text>
+            <Text style={estilo.dataText}>Rua: </Text>
+            <Text style={estilo.dataText}>Número: </Text>
+            <Text style={estilo.dataText}>Complemento: </Text>
+          </View>
+          <Text style={estilo.dataText}>Membro desde: {infos["DataCri"]}</Text>
+          <TouchableOpacity
+            style={estilo.singUpButton}
+            onpress={() => navigation.navigate('Editar')}>
+            <Text style={estilo.buttonText}>
+              Atualizar Dados
+            </Text>
+          </TouchableOpacity>
         </View>
-        <View>
-          <Text style={estilo.texto}>
-            Idade
-          </Text>
-          <Text style={estilo.caixa}>
-            {nome}
-          </Text>
-        </View>
-        <Text style={estilo.caixaPequena}>xxxxxxxxx</Text>
-        <Text style={estilo.caixaPequena}>xxxxxxxx</Text>
-        <Text style={estilo.caixaPequena}>xxxxxxxx</Text>
-        <Text style={estilo.caixaPequena}>xxxxxx</Text>
-        <Text style={estilo.caixaPequena}>xxxxxx</Text>
-        <Button labelButton='Atualizar Dados' onpress={() => navigation.navigate('Editar')} />
-
-      </SafeAreaView>
-    </LinearGradient>
-
+      </ScrollView>
+    </LinearGradient >
   );
 }

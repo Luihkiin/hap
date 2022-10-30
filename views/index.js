@@ -1,9 +1,15 @@
 import Login from './Login';
 import Cadastro from './Cadastro';
-import Servico from './Servico';
 import EsqSenha from './EsqSenha';
 import Pesquisa from './Servico/Pesquisa';
-import CadastroFunc from './CadastroFunc';
-import Perfil from './Perfil'
+import Perfil from './Perfil';
+import ServicoFunc from './Servicos/ServicoFunc';
+import AdicionarServico from './Servicos/AdicionarServico';
 
-export {Login, Cadastro, Servico, EsqSenha, Pesquisa, CadastroFunc, Perfil};
+export {Login,
+    Cadastro,
+    EsqSenha,
+    Pesquisa,
+    Perfil,
+    ServicoFunc,
+    AdicionarServico};
