@@ -27,7 +27,7 @@ const estilo = StyleSheet.create({
     },
 
     footer: {
-        paddingTop: 60,
+        paddingTop: 30,
     },
 
     textFooter: {
@@ -139,7 +139,6 @@ const estilo = StyleSheet.create({
     },
 
     singUpButton: {
-        //backgroundColor: 'white',
         backgroundColor: '#A2FFF0',
         height: 60,
         width: '80%',
@@ -157,13 +156,31 @@ const estilo = StyleSheet.create({
     },
 
     box: {
-        //backgroundColor: 'white',
         backgroundColor: '#A2FFF0',
         margin: 10,
         alignSelf: 'center',
         borderRadius: 20,
         padding: 15,
         height: 60,
+        width: '80%',
+        justifyContent: 'center',
+    },
+
+    card: {
+        backgroundColor: '#A2FFF0',
+        margin: 10,
+        alignSelf: 'center',
+        borderRadius: 20,
+        padding: 15,
+        width: '80%',
+        justifyContent: 'center',
+    },
+
+    cardButton: {
+        backgroundColor: 'white',
+        margin: 10,
+        borderRadius: 20,
+        padding: 15,
         width: '80%',
         justifyContent: 'center',
     },
@@ -175,6 +192,50 @@ const estilo = StyleSheet.create({
         padding: 5,
         height: 60,
         width: '23%',
+        justifyContent: 'center',
+        textAlign: 'center',
+    },
+
+    updateBox: {
+        backgroundColor: '#A2FFF0',
+        margin: 10,
+        borderRadius: 20,
+        padding: 5,
+        height: 50,
+        width: '70%',
+        justifyContent: 'center',
+        textAlign: 'center',
+    },
+
+    updateSmallBox: {
+        backgroundColor: '#A2FFF0',
+        margin: 10,
+        borderRadius: 20,
+        padding: 5,
+        height: 50,
+        width: '18%',
+        justifyContent: 'center',
+        textAlign: 'center',
+    },
+
+    updateTextBox: {
+        backgroundColor: '#A2FFF0',
+        margin: 10,
+        borderRadius: 20,
+        padding: 5,
+        height: 50,
+        width: '60%',
+        justifyContent: 'center',
+        textAlign: 'center',
+    },
+
+    updateText: {
+        backgroundColor: '#A2FFF0',
+        margin: 10,
+        padding: 5,
+        height: 50,
+        width: '90%',
+        alignSelf: 'center',
         justifyContent: 'center',
         textAlign: 'center',
     },
@@ -204,11 +265,11 @@ const estilo = StyleSheet.create({
         textAlign: 'center',
     },
     searchArea: {
+        backgroundColor: '#A2FFF0',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 400,
-        marginLeft: 30,
+        width: '80%',
     },
 
     orderButton: {

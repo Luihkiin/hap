@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect, useReducer, Component } from 'react';
 import { Text, View, Image, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
-import { estilo } from '../assets/css/Css'
+import { estilo } from '../../assets/css/Css'
 import { LinearGradient } from 'expo-linear-gradient';
-import Button from './Servico/components/Button';
 import { sortedLastIndexOf } from 'lodash';
 import { ActivityIndicator } from 'react-native';
+import { EditarPerfil } from './EditarPerfil';
+import API from '../../helpers/Api';
 
 export default function Perfil({ route, navigation }) {
 
@@ -15,28 +16,15 @@ export default function Perfil({ route, navigation }) {
 
   //Processamento
   const coletarInfos = async () => {
-    var headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    };
-
-    var Data = {
-      cpf: cpf,
-    };
-
-    const response = await fetch('http://192.168.0.100:80/hap/perfil/perfilSelect.php', {
-      method: 'POST',
-      headers: headers,
-      body: JSON.stringify(Data),
-    })
-      const jsonData = await response.json()
-      //console.log('jsonData', jsonData)
-      setInfos(jsonData)
-      setLoading(false);
-      console.log(infos)
+    API.profileSelect();
+    setInfos(jsonProfile);
+    setLoading(false);
   }
 
+  console.log(infos);
+
   useEffect(() => {
+    setLoading(true);
     coletarInfos();
   }, [])
 
@@ -50,12 +38,11 @@ export default function Perfil({ route, navigation }) {
       </View>
     )
   }
-
   //front-end
   return (
     <LinearGradient colors={['#FFFFFF', '#00FFF0']}
       style={estilo.linearGradient}>
-      <Image style={estilo.image} source={require('../assets/img/Person.png')} />
+      <Image style={estilo.image} source={infos["Image"]} />
       <ScrollView style={estilo.loginContainer}>
         <View>
           <Text style={estilo.centerTitle}>Dados Cadastrados: </Text>
@@ -77,18 +64,18 @@ export default function Perfil({ route, navigation }) {
             <Text style={estilo.dataTitle}>
               Endereço Cadastrado:
             </Text>
-            <Text style={estilo.dataText}>Cep: {infos["CEP"]}</Text>
-            <Text style={estilo.dataText}>Estado: </Text>
-            <Text style={estilo.dataText}>Cidade: </Text>
-            <Text style={estilo.dataText}>Bairro: </Text>
-            <Text style={estilo.dataText}>Rua: </Text>
-            <Text style={estilo.dataText}>Número: </Text>
-            <Text style={estilo.dataText}>Complemento: </Text>
+            <Text style={estilo.dataText}>Cep: {infos["Cep"]}</Text>
+            <Text style={estilo.dataText}>Estado: {infos["Estado"]}</Text>
+            <Text style={estilo.dataText}>Cidade: {infos["Cidade"]}</Text>
+            <Text style={estilo.dataText}>Bairro: {infos["Bairro"]}</Text>
+            <Text style={estilo.dataText}>Rua: {infos["Rua"]}</Text>
+            <Text style={estilo.dataText}>Número: {infos["Numero"]}</Text>
+            <Text style={estilo.dataText}>Complemento: {infos["Complemento"]}</Text>
           </View>
           <Text style={estilo.dataText}>Membro desde: {infos["DataCri"]}</Text>
           <TouchableOpacity
-            style={estilo.singUpButton}
-            onpress={() => navigation.navigate('Editar')}>
+            onPress={() => navigation.navigate('EditarPerfil', { cpf })}
+            style={estilo.singUpButton}>
             <Text style={estilo.buttonText}>
               Atualizar Dados
             </Text>

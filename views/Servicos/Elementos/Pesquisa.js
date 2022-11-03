@@ -33,12 +33,12 @@ export default function Pesquisa ({ navigation }) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.searchArea}>
+    <SafeAreaView>
+      <View>
         <TextInput
-          style={styles.input}
+          style={styles.box}
           placeholder="Pesquise um Serviço"
-          placeholderTextColor="#888"
+          placeholderTextColor="#00000"
           value={searchText}
           onChangeText={(t) => setSearchText(t)}
         />
@@ -46,7 +46,7 @@ export default function Pesquisa ({ navigation }) {
           <MaterialCommunityIcons
             service="Ordem alfabética"
             size={32}
-            color="#888"
+            color="#000000"
           />
         </TouchableOpacity>
       </View>

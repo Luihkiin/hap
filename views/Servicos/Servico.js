@@ -2,14 +2,13 @@ import React, { useState, useEffect, useReducer } from 'react';
 import { SafeAreaView, Alert, Text, View, TouchableOpacity, Image, TextInput, FlatList } from "react-native";
 import { estilo } from '../../assets/css/Css.js'
 import { LinearGradient } from 'expo-linear-gradient';
-import Login from '../Login';
-import Pesquisa from '../Servico/Pesquisa.js';
+import Pesquisa from '../Elementos/Pesquisa.js';
 import { StatusBar } from 'expo-status-bar';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import ListItem from '../Servico/components/ListItem.js';
-import resultado from '../Servico/resultado';
+import ListItem from '../Elementos/components/ListItem.js';
+import resultado from '../Elementos/resultado';
 import Perfil from '../Perfil';
-import CPF from '../Login';
+import API from '../../helpers/Api';
 
 export default function Servico({ navigation }) {
     //DECLARAÇÃO DAS VARIÁVEIS

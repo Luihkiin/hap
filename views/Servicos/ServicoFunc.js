@@ -2,24 +2,24 @@ import React, { useState, useEffect, useReducer } from 'react';
 import { SafeAreaView, Alert, Text, View, TouchableOpacity, Image, TextInput, FlatList } from "react-native";
 import { estilo } from '../../assets/css/Css.js'
 import { LinearGradient } from 'expo-linear-gradient';
-import Login from '../Login';
-import Pesquisa from '../Servico/Pesquisa.js';
+import Pesquisa from './Elementos/Pesquisa.js';
 import { StatusBar } from 'expo-status-bar';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import ListItem from '../Servico/components/ListItem.js';
-import resultado from '../Servico/resultado';
-import Perfil from '../Perfil';
+import ListItem from './Elementos/components/ListItem.js';
+import resultado from './Elementos/resultado';
+import Perfil from '../Perfil/Perfil';
 import AdicionarServico from './AdicionarServico';
 import { ScrollView } from 'react-native-gesture-handler';
+import API from '../../helpers/Api';
 
 export default function ServicoFunc({ route, navigation }) {
     //DECLARAÇÃO DAS VARIÁVEIS
     const [searchText, setSearchText] = useState('');
     const [list, setList] = useState(resultado);
-    var [nome, setNome] = useState('');
-    const {CPFMask} = route.params;
-    const {cpf} = route.params;
+    const { CPFMask } = route.params;
+    const { cpf } = route.params;
 
+    //Processamento
     useEffect(() => {
         if (searchText === '') {
             setList(resultado);
@@ -41,21 +41,21 @@ export default function ServicoFunc({ route, navigation }) {
         setList(newList);
     };
 
+    //Front-End
     return (
         <LinearGradient
             colors={['#FFFFFF', '#00FFF0']}
             style={estilo.linearGradient}>
             <View style={estilo.serviceContainer}>
                 <Text style={estilo.centerTitle}>
-                    Bem-vindo {CPFMask}
+                    Bem-vindo
                 </Text>
                 <View style={estilo.serviceContainer}>
-
                     <View style={estilo.searchArea}>
                         <TextInput
                             style={estilo.input}
                             placeholder="Pesquise um Serviço"
-                            placeholderTextColor="#888"
+                            placeholderTextColor="#000000"
                             value={searchText}
                             onChangeText={(t) => setSearchText(t)}
                         />
@@ -89,7 +89,7 @@ export default function ServicoFunc({ route, navigation }) {
                     </View>
                     <View>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('Perfil', {cpf})}
+                            onPress={() => navigation.navigate('Perfil', { cpf })}
                             style={estilo.smallButton}>
                             <Text style={estilo.buttonText}>
                                 Meu Perfil
