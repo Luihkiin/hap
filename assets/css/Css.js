@@ -102,13 +102,15 @@ const estilo = StyleSheet.create({
         margin: 10,
         fontWeight: 'bold',
     },
-
+    
+/*
     textoCentro: {
         fontSize: 20,
         alignSelf: 'center',
         marginBottom: 10
     },
 
+    
     paragrafo: {
         fontSize: 20,
         paddingLeft: 70,
@@ -117,6 +119,7 @@ const estilo = StyleSheet.create({
         marginBottm: 30,
         justifyContent: 'center'
     },
+    */
 
     smallButton: {
         backgroundColor: '#A2FFF0',
@@ -181,8 +184,9 @@ const estilo = StyleSheet.create({
         margin: 10,
         borderRadius: 20,
         padding: 15,
-        width: '80%',
+        width: '93%',
         justifyContent: 'center',
+        alignSelf: 'center',
     },
 
     dateBox: {
@@ -250,26 +254,16 @@ const estilo = StyleSheet.create({
         width: 250,
     },
 
-    input: {
-        flex: 1,
-        height: 50,
-        backgroundColor: '#FFFFFF',
-        marginBottom: 30,
-        marginTop: 20,
-        marginLeft: 30,
-        borderRadius: 5,
-        fontSize: 19,
-        paddingLeft: 15,
-        paddingRight: 15,
-        color: '#000000',
-        textAlign: 'center',
-    },
     searchArea: {
         backgroundColor: '#A2FFF0',
         flexDirection: 'row',
-        alignItems: 'center',
         justifyContent: 'center',
         width: '80%',
+        height: 60,
+        alignSelf: 'center',
+        borderRadius: 20,
+        marginTop: 20,
+        marginBottom: 50,
     },
 
     orderButton: {

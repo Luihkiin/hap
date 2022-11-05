@@ -8,24 +8,46 @@ import { ActivityIndicator } from 'react-native';
 import { EditarPerfil } from './EditarPerfil';
 import API from '../../helpers/Api';
 
-export default function Perfil({ route, navigation }) {
+export default function Perfil({ navigation }) {
 
   const [loading, setLoading] = useState(true);
   const [infos, setInfos] = useState([]);
-  const { cpf } = route.params;
+  const [photo, setPhoto] = useState('');
+  var [sexo, setSexo] = useState('');
+  var [premium, setPremium] = useState('');
 
   //Processamento
   const coletarInfos = async () => {
-    API.profileSelect();
+    await API.profileSelect();
     setInfos(jsonProfile);
     setLoading(false);
   }
 
   console.log(infos);
 
+  const conversorInfos = async () => {
+    if (infos["Sexo"] = 1){
+      setSexo("Masculino")
+    } else if (infos["Sexo"] = 2){
+      setSexo("Feminino")
+    } else {
+      setSexo("Outros")
+    }
+
+    if (infos["Premium"] = "0"){
+      setPremium("Desabilitada")
+    } else if (infos["Premium"] = "1"){
+      setPremium("Habilitada")
+    } else {
+      setPremium("Desabilitada")
+    }
+  }
+
+
   useEffect(() => {
     setLoading(true);
     coletarInfos();
+    conversorInfos();
   }, [])
 
   if (loading) {
@@ -38,22 +60,24 @@ export default function Perfil({ route, navigation }) {
       </View>
     )
   }
+
+
   //front-end
   return (
     <LinearGradient colors={['#FFFFFF', '#00FFF0']}
       style={estilo.linearGradient}>
-      <Image style={estilo.image} source={infos["Image"]} />
+      <Image style={estilo.image} source={require('../../assets/img/Person.png')} />
       <ScrollView style={estilo.loginContainer}>
         <View>
           <Text style={estilo.centerTitle}>Dados Cadastrados: </Text>
           <View style={estilo.infoContainer}>
             <Text style={estilo.dataTitle}>Dados pessoais </Text>
             <Text style={estilo.dataText}>Nome: {infos["Nome"]}</Text>
-            <Text style={estilo.dataText}>Sexo: {infos["Sexo"]}</Text>
+            <Text style={estilo.dataText}>Sexo: {sexo}</Text>
             <Text style={estilo.dataText}>CPF: {infos["CPF"]}</Text>
             <Text style={estilo.dataText}>Data Nascimento: {infos["DataNasc"]} </Text>
             <Text style={estilo.dataText}>Idade: {infos["Idade"]}</Text>
-            <Text style={estilo.dataText}>Versão Confort: {infos["Premium"]}</Text>
+            <Text style={estilo.dataText}>Versão Confort: {premium}</Text>
           </View>
           <View style={estilo.infoContainer}>
             <Text style={estilo.dataTitle}>Informações de Contato</Text>

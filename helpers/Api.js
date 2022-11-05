@@ -67,7 +67,7 @@ const API = {
                     console.log("Login bem-sucedido")
                     global.token = 'access'
                     console.log(token)
-                } else if (response === "Senha Incorreta"){
+                } else if (response === "Senha Incorreta") {
                     Alert.alert("Informações incorretas", "Verifique seus dados")
                 } else {
                     Alert.alert("Conta não encontrada", "Realize seu cadastro!")
@@ -119,6 +119,7 @@ const API = {
     //Consultar Perfil
     profileSelect: async () => {
         global.token = '';
+        global.jsonProfile = '';
 
         var Data = {
             cpf: cpf,
@@ -130,6 +131,8 @@ const API = {
             body: JSON.stringify(Data),
         }).then((response) => response.json())
         global.jsonProfile = response;
+
+        return jsonProfile;
     },
 
     //Atualizar Perfil
@@ -163,11 +166,31 @@ const API = {
         Alert.alert("Cadastro atualizado", "Suas informações foram atualizadas com sucesso");
     },
 
+    pictureSelect: async () => {
+        const image = await fetch(ApiBase + '/perfil/profilePicSelect.php', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            body: JSON.stringify()}
+        })
+            .then((image) => image.json())
+            .then((image) => image)
+            .catch(error => console.log(error));
+
+        global.profilePic = image;
+        return profilePic;
+    },
+
     listServices: async () => {
         const response = await
-            fetch(ApiBase+'/servicos/servico.php')
-            .then((response) => response.json())
-            global.jsonService = response;
+            fetch(ApiBase + '/servicos/servico.php')
+                .then((response) => response.json())
+        global.jsonService = response;
+    },
+
+    createOrder: async () => {
+
     },
 }
 

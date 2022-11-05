@@ -11,27 +11,27 @@ import API from '../helpers/Api';
 export default function Cadastro({ navigation }) {
   //VARIÁVEIS
   var [sexo, setSex] = useState('');
-  global.sexoGlobal = sexo;
   var [nome, setNom] = useState('');
-  global.nomeGlobal = nome;
   var [cpfMask, setCpfMask] = useState('');
   var cpf = cpfMask.replace(/[-.]/g, '');
-  global.cpfGlobal = cpf;
   var [email, setEma] = useState('');
-  global.emailGlobal = email;
   var [celMask, setCelMask] = useState('');
   var celular = celMask.replace(/[()-]/g, '');
-  global.celGlobal = celular;
   var [pwd, setPwd] = useState('');
-  global.pwdGlobal
   var [diaNasc, setDiaNasc] = useState('');
   var [mesNasc, setMesNasc] = useState('');
   var [anoNasc, setAnoNasc] = useState('');
   var [dataAtual, setDataAtual] = useState('');
-  global.dataAtualGlobal = dataAtual;
   var [dataNasc, setDataNasc] = useState('');
-  global.dataNascGlobal = dataNasc;
   var [idade, setIdade] = useState('');
+  global.sexoGlobal = sexo;
+  global.nomeGlobal = nome;
+  global.cpfGlobal = cpf;
+  global.emailGlobal = email;
+  global.celGlobal = celular;
+  global.pwdGlobal
+  global.dataAtualGlobal = dataAtual;
+  global.dataNascGlobal = dataNasc;
   global.idadeGlobal = idade;
   //Variáveis para selecionar data
   const diaSeletor = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];

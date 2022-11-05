@@ -4,14 +4,16 @@ import EsqSenha from './EsqSenha';
 import Pesquisa from './Servicos/Elementos/Pesquisa';
 import Perfil from './Perfil/Perfil';
 import EditarPerfil from './Perfil/EditarPerfil';
-import ServicoFunc from './Servicos/ServicoFunc';
+import TelaInicial from './Servicos/TelaInicial';
 import AdicionarServico from './Servicos/AdicionarServico';
+import Solicitacao from './Servicos/Solicitacao';
 
 export {Login,
     Cadastro,
     EsqSenha,
     Pesquisa,
     Perfil,
-    ServicoFunc,
+    TelaInicial,
     AdicionarServico,
-    EditarPerfil};
+    EditarPerfil,
+    Solicitacao};

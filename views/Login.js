@@ -4,16 +4,16 @@ import { estilo } from '../assets/css/Css.js'
 import { LinearGradient } from "expo-linear-gradient";
 import Cadastro from './Cadastro';
 import EsqSenha from './EsqSenha';
-import ServicoFunc from './Servicos/ServicoFunc';
+import TelaInicial from './Servicos/TelaInicial';
 import { TextInputMask } from 'react-native-masked-text';
 import API from '../helpers/Api';
 
 export default function Login({ navigation }) {
   //Declaração das Variáveis
   var [CPFMask, setCpfMask] = useState('');
-  global.cpf = CPFMask.replace(/[-.]/g, '');
   var [pwd, setPwd] = useState('');
-  global.pwdGlobal = pwd;
+  global.cpf = CPFMask.replace(/[-.]/g, '');
+  global.pwdGlobal = pwd;  
 
   //Função Login
   const FazerLogin = async () => {
@@ -22,7 +22,7 @@ export default function Login({ navigation }) {
     } else {
       await API.login();
       if (token === 'access') {
-        await navigation.navigate('ServicoFunc', { CPFMask, cpf })
+        await navigation.navigate('TelaInicial' )
       } else if (token === 'restrict'){
         await navigation.navigate(Cadastro)
       }

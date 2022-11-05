@@ -4,32 +4,32 @@ import { estilo } from '../../assets/css/Css'
 import { LinearGradient } from 'expo-linear-gradient';
 import { TextInput } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ServicoFunc } from '../Servicos/ServicoFunc';
+import { ServicoFunc } from '../Servicos/TelaInicial';
 import API from '../../helpers/Api';
 
 export default function EditarPerfil({ route, navigation }) {
     //Declaração de variáveis
     const { cpf } = route.params;
-    global.cpfGlobal = cpf;
     const [loading, setLoading] = useState(true);
     const [infos, setInfos] = useState([]);
     var [email, setEma] = useState('');
-    global.emailGlobal = email;
     var [celular, setCel] = useState('');
-    global.celGlobal = celular; 
     var [cep, setCep] = useState('');
-    global.cepGlobal = cep;
     var [cidade, setCid] = useState('');
-    global.cidadeGlobal = cidade;
     var [bairro, setBai] = useState('');
-    global.bairroGlobal = bairro;
     var [rua, setRua] = useState('');
-    global.ruaGlobal = rua;
     var [complemento, setCom] = useState('');
-    global.complementoGlobal = complemento;
     var [numero, setNum] = useState('');
-    global.numeroGlobal = numero;
     const [image, setImage] = useState(null);
+    global.cpfGlobal = cpf;
+    global.emailGlobal = email;
+    global.celGlobal = celular;
+    global.cepGlobal = cep;
+    global.cidadeGlobal = cidade;
+    global.bairroGlobal = bairro;
+    global.ruaGlobal = rua;
+    global.complementoGlobal = complemento;
+    global.numeroGlobal = numero;
     global.imageGlobal = image;
 
     //Processamento
@@ -51,7 +51,7 @@ export default function EditarPerfil({ route, navigation }) {
         } else {
             API.profileUpdate();
             if (token === 'access') {
-                navigation.navigate('ServicoFunc', { cpf })
+                navigation.navigate('TelaInicial', { cpf })
             }
         }
     }
@@ -75,17 +75,11 @@ export default function EditarPerfil({ route, navigation }) {
             <View>
                 <Image
                     style={estilo.image}
-                    source={infos["Image"]}>
+                    source={require('../../assets/img/Person.png')}>
                 </Image>
             </View>
             <View style={estilo.loginContainer}>
                 <ScrollView>
-                    <Text style={estilo.dataTitle}>Informações Pessoais</Text>
-                    <Text>RG</Text>
-                    <Text>Cúrriculo</Text>
-                    <Text>Descrição Profissional</Text>
-                    <Text>Antecedentes Criminais</Text>
-
                     <Text style={estilo.dataTitle}>Informações de Contato</Text>
                     <View style={estilo.rowContainer}>
                         <Text style={estilo.dataText}>Email:</Text>
