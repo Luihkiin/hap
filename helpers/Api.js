@@ -1,6 +1,7 @@
 import { Alert } from "react-native";
 
-const ApiBase = "http://192.168.0.100:80/hap";
+//const ApiBase = "http://192.168.0.100:80/hap";
+const ApiBase = "https://hapacadec.000webhostapp.com/hap/";
 
 var headers = {
     'Accept': 'application/json',
