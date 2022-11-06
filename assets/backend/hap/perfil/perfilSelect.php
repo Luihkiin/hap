@@ -7,13 +7,13 @@ $cpf = $decodedData["cpf"];//'12345678911';
 
 //Select para Cliente
 $CLISQL = "SELECT END_INT_ID, SEX_INT_ID, STP_INT_ID, CLI_ST_NOME, CLI_ST_CPF, CLI_ST_EMAIL, CLI_ST_CELULAR, CLI_DT_DATANASCIMENTO, CLI_INT_IDADE, CLI_BL_PREMIUM, CLI_DTM_DATACRIACAO, CLI_FIL_FOTOPERFIL 
-FROM cliente WHERE CLI_ST_CPF = '$cpf'";
+FROM CLIENTE WHERE CLI_ST_CPF = '$cpf'";
 $exeCLI = mysqli_query($connection, $CLISQL);
 $checkCLI = mysqli_num_rows($exeCLI);
 
 //Select para Funcionário
 $FUNSQL = "SELECT END_INT_ID, SEX_INT_ID, STP_INT_ID, FUN_ST_NOME, FUN_ST_CPF, FUN_ST_EMAIL, FUN_ST_CELULAR, FUN_DT_DATANASCIMENTO, FUN_INT_IDADE, FUN_DTM_DATACRIACAO, FUN_FIL_FOTOPERFIL 
-FROM funcionario WHERE FUN_ST_CPF = '$cpf'";
+FROM FUNCIONARIO WHERE FUN_ST_CPF = '$cpf'";
 $exeFUN = mysqli_query($connection, $FUNSQL);
 
 //Processamento
@@ -36,7 +36,7 @@ if ($checkCLI != 0) {
 
     $enderecoID = $dados[0][9];
     $ENDCLI = "SELECT END_ST_ESTADO, END_ST_CIDADE, END_ST_BAIRRO, END_ST_RUA, END_INT_NUMERO, END_TXT_COMPLEMENTO, END_ST_CEP 
-        FROM endereco INNER JOIN cliente ON endereco.END_INT_ID = cliente.END_INT_ID WHERE cliente.END_INT_ID = '$enderecoID'";
+        FROM ENDERECO INNER JOIN CLIENTE ON ENDERECO.END_INT_ID = CLIENTE.END_INT_ID WHERE CLIENTE.END_INT_ID = '$enderecoID'";
     $exeENDC = mysqli_query($connection, $ENDCLI);
 
     while ($linhaEnd = mysqli_fetch_assoc($exeENDC)) {
@@ -74,7 +74,7 @@ if ($checkCLI != 0) {
 
     $enderecoID = $dados[0][9];
     $ENDFUN = "SELECT END_ST_ESTADO, END_ST_CIDADE, END_ST_BAIRRO, END_ST_RUA, END_INT_NUMERO, END_TXT_COMPLEMENTO, END_ST_CEP 
-        FROM endereco INNER JOIN funcionario ON endereco.END_INT_ID = funcionario.END_INT_ID WHERE funcionario.END_INT_ID = '$enderecoID'";
+        FROM ENDERECO INNER JOIN FUNCIONARIO ON ENDERECO.END_INT_ID = FUNCIONARIO.END_INT_ID WHERE FUNCIONARIO.END_INT_ID = '$enderecoID'";
     $exeENDF = mysqli_query($connection, $ENDFUN);
 
 

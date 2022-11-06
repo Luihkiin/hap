@@ -3,7 +3,7 @@
 include('../database.php');
 
 
-$SQL = "SELECT SER_ST_NOME, SER_ST_DESCRICAO, SER_FL_PRECOMEDIO FROM servico";
+$SQL = "SELECT SER_ST_NOME, SER_ST_DESCRICAO, SER_FL_PRECOMEDIO FROM SERVICO";
 $exeSQL = mysqli_query($connection, $SQL);
 $checkSQL = mysqli_num_rows($exeSQL)-1;
 

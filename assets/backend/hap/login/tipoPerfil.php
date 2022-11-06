@@ -6,8 +6,8 @@ include("../database.php");
 
 //$cpf = $decodedData["cpf"];
 
-$CLISQL = "SELECT STP_INT_ID FROM cliente WHERE CLI_ST_CPF = '$cpf'";
-$FUNSQL = "SELECT STP_INT_ID FROM funcionario WHERE FUN_ST_CPF = '$cpf'";
+$CLISQL = "SELECT STP_INT_ID FROM CLIENTE WHERE CLI_ST_CPF = '$cpf'";
+$FUNSQL = "SELECT STP_INT_ID FROM FUNCIONARIO WHERE FUN_ST_CPF = '$cpf'";
 
 $exeCLI = mysqli_query($connection, $CLISQL);
 $exeFUN = mysqli_query($connection, $FUNSQL);

@@ -4,8 +4,8 @@ include('database.php');
 
 $email= $decodedData["email"];
 
-$CLIEMAIL = "SELECT * FROM cliente WHERE CLI_ST_EMAIL = '$email'";
-$FUNEMAIL = "SELECT * FROM funcionario WHERE FUN_ST_EMAIL = '$email'";
+$CLIEMAIL = "SELECT * FROM CLIENTE WHERE CLI_ST_EMAIL = '$email'";
+$FUNEMAIL = "SELECT * FROM FUNCIONARIO WHERE FUN_ST_EMAIL = '$email'";
 $exeCLI = mysqli_query($connection, $CLIEMAIL);
 $exeFUN = mysqli_query($connection, $FUNEMAIL);
 $checkCLI = mysqli_num_rows($exeCLI);

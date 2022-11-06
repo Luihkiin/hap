@@ -9,8 +9,8 @@ include("../database.php");
 $cpf = $decodedData["cpf"];
 $pwd = $decodedData["pwdGlobal"];
 
-$CLISQL = "SELECT * FROM cliente WHERE CLI_ST_CPF = '$cpf'";
-$FUNSQL = "SELECT * FROM funcionario WHERE FUN_ST_CPF = '$cpf'";
+$CLISQL = "SELECT * FROM CLIENTE WHERE CLI_ST_CPF = '$cpf'";
+$FUNSQL = "SELECT * FROM FUNCIONARIO WHERE FUN_ST_CPF = '$cpf'";
 
 $exeCLI = mysqli_query($connection, $CLISQL);
 $exeFUN = mysqli_query($connection, $FUNSQL);
