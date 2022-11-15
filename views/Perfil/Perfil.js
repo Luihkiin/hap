@@ -43,7 +43,6 @@ export default function Perfil({ navigation }) {
     }
   }
 
-
   useEffect(() => {
     setLoading(true);
     coletarInfos();

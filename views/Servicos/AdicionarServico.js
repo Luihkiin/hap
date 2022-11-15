@@ -12,6 +12,9 @@ export default function AdicionarServico({ navigation }) {
 
   const [loading, setLoading] = useState(true);
   const [servicos, setServicos] = useState([]);
+  const [isSelectedSt, setSelectedSt] = useState(false);
+  const [isSelectedNd, setSelectedNd] = useState(false);
+  const [isSelectedRd, setSelectedRd] = useState(false);
 
   //Processamento
   const coletarServico = async () => {
@@ -21,14 +24,13 @@ export default function AdicionarServico({ navigation }) {
     
   }
 
-  console.log(servicos.length)
-
   useEffect(() => {
     coletarServico();
   }, [])
 
   const adicionarServico = async () => {
-
+    API.associateService();
+    setLoading(true);
   }
 
   if (loading) {
@@ -73,8 +75,9 @@ export default function AdicionarServico({ navigation }) {
                   </Card.Content>
                   <Card.Actions>
                     <TouchableOpacity style={estilo.cardButton}
-                    onPress ={() => adicionarServico()}>
-                      <Text style={estilo.buttonText}>Selecionar</Text>
+                    onPress ={() => (adicionarServico(),
+                      setSelectedSt(true))}>
+                      <Text style={estilo.buttonText}>{isSelectedSt ? "Escolhido" : "Escolher"}</Text>
                     </TouchableOpacity>
                   </Card.Actions>
                 </Card>
@@ -90,8 +93,9 @@ export default function AdicionarServico({ navigation }) {
                   </Card.Content>
                   <Card.Actions>
                     <TouchableOpacity style={estilo.cardButton}
-                    onPress ={() => adicionarServico()}>
-                      <Text style={estilo.buttonText}>Selecionar</Text>
+                    onPress ={() => (adicionarServico(),
+                      setSelectedNd(true))}>
+                      <Text style={estilo.buttonText}>{isSelectedNd ? "Escolhido" : "Escolher"}</Text>
                     </TouchableOpacity>
                   </Card.Actions>
                 </Card>
@@ -106,16 +110,21 @@ export default function AdicionarServico({ navigation }) {
                       R$ {servicos[2]["Preco"]}</Text>
                   </Card.Content>
                   <Card.Actions>
-                    <TouchableOpacity style={estilo.cardButton}>
-                      <Text style={estilo.buttonText}>Selecionar</Text>
+                    <TouchableOpacity style={estilo.cardButton}
+                    onPress ={() => (adicionarServico(),
+                      setSelectedRd(true))}>
+                      <Text style={estilo.buttonText}>{isSelectedRd ? "Escolhido" : "Escolher"}</Text>
                     </TouchableOpacity>
                   </Card.Actions>
                 </Card>
               </View>
               <View>
-                <TouchableOpacity style={estilo.singUpButton}>
+                <TouchableOpacity style={estilo.singUpButton}
+                onPress={() => (setSelectedSt(false),
+                  setSelectedNd(false),
+                  setSelectedRd(false))}>
                   <Text style={estilo.buttonText}>
-                    Confirmar escolhas</Text>
+                    Limpar escolhas</Text>
                 </TouchableOpacity>
               </View>
             </View>

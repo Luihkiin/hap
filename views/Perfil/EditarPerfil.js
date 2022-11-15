@@ -96,7 +96,8 @@ export default function EditarPerfil({ route, navigation }) {
                             <TextInput
                                 style={estilo.updateText}
                                 onChangeText={(text) => setCel(text)}
-                                placeholder={infos["Celular"]}>
+                                placeholder={infos["Celular"]}
+                                keyboardType='numeric'>
                             </TextInput>
                         </View>
 
@@ -110,7 +111,8 @@ export default function EditarPerfil({ route, navigation }) {
                             <TextInput
                                 style={estilo.updateText}
                                 onChangeText={(text) => setCep(text)}
-                                placeholder={infos["Cep"]}>
+                                placeholder={infos["Cep"]}
+                                keyboardType='numeric'>
                             </TextInput>
                         </View>
                     </View>
@@ -150,7 +152,8 @@ export default function EditarPerfil({ route, navigation }) {
                             <TextInput
                                 style={estilo.updateText}
                                 onChangeText={(text) => setNum(text)}
-                                placeholder={infos["Numero"]}>
+                                placeholder={infos["Numero"]}
+                                keyboardType='numeric'>
                             </TextInput>
                         </View>
                     </View>
