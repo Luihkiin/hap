@@ -45,7 +45,6 @@ const estilo = StyleSheet.create({
         fontSize: 30,
         textAlign: 'center',
         paddingTop: 80,
-        //margin: 30,
         fontWeight: 'bold',
     },
 
@@ -103,24 +102,6 @@ const estilo = StyleSheet.create({
         fontWeight: 'bold',
     },
     
-/*
-    textoCentro: {
-        fontSize: 20,
-        alignSelf: 'center',
-        marginBottom: 10
-    },
-
-    
-    paragrafo: {
-        fontSize: 20,
-        paddingLeft: 70,
-        paddingRight: 70,
-        marginTop: 50,
-        marginBottm: 30,
-        justifyContent: 'center'
-    },
-    */
-
     smallButton: {
         backgroundColor: '#A2FFF0',
         height: 60,

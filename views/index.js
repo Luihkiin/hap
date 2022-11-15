@@ -7,6 +7,7 @@ import EditarPerfil from './Perfil/EditarPerfil';
 import TelaInicial from './Servicos/TelaInicial';
 import AdicionarServico from './Servicos/AdicionarServico';
 import Solicitacao from './Servicos/Solicitacao';
+import FinalSolicitacao from './Servicos/FinalSolicitacao';
 
 export {Login,
     Cadastro,
@@ -16,4 +17,5 @@ export {Login,
     TelaInicial,
     AdicionarServico,
     EditarPerfil,
-    Solicitacao};
+    Solicitacao,
+    FinalSolicitacao};

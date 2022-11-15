@@ -8,23 +8,38 @@ import TelaInicial from './TelaInicial';
 import API from '../../helpers/Api';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import SelectDropdown from 'react-native-select-dropdown';
+import FinalSolicitacao from './FinalSolicitacao.js';
 
 export default function Solicitacao({ navigation }) {
-  const [pagamento, setPgto] = useState('dinheiro');
+  //Variáveis gerais
+  const [pagamento, setPgto] = useState('Dinheiro');
   const [infos, setInfos] = useState([]);
+  const [funcionarios, setFuncs] = useState([]);
+  var [funcEscolhido, setFuncE] = useState('');
   const [loading, setLoading] = useState(true);
   var [dataSol, setDataSol] = useState('');
+  var [descricao, setDescricao] = useState('');
   //Variáveis para selecionar data
   const diaSeletor = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
   const mesSeletor = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
   var [diaAten, setDiaAten] = useState('');
   var [mesAten, setMesAten] = useState('');
   var [anoAten, setAnoAten] = useState('');
+  var [dataAten, setDataAten] = useState('');
+  //Variáveis Globais
+  global.pagGlobal = pagamento;
+  global.dataSolGlobal = dataSol;
+  global.dataAtenGlobal = dataAten;
+  global.servico = solicitacao[3];
+  global.descGlobal = descricao;
+  global.funcionario = funcEscolhido;
 
   //Processamento
   const criarSolicitacao = async () => {
     await API.createOrder();
-
+    if (global.token = 'access') {
+      navigation.navigate('FinalSolicitacao');
+    }
   }
 
   const endereco = async () => {
@@ -40,8 +55,9 @@ export default function Solicitacao({ navigation }) {
     setAnoAten(ano);
   }
 
-  const dataAten = async () =>{
-    var dataAten = new Date(anoAten, +mesAten, +diaAten);
+  const dataAtendimento = () => {
+    var dataProgramada = anoAten + '-' + mesAten + '-' + diaAten;
+    setDataAten(dataProgramada);
   }
 
   useEffect(() => {
@@ -60,9 +76,6 @@ export default function Solicitacao({ navigation }) {
       </View>
     )
   }
-
-  //Criar uma variável para DATA DA SOLICITAÇÃO e DATA ATENDIMENTO
-
 
   return (
     <LinearGradient
@@ -94,6 +107,14 @@ export default function Solicitacao({ navigation }) {
             </Text>
             <Text style={estilo.dataText}>
               {solicitacao[2]}
+            </Text>
+          </View>
+          <View style={estilo.infoContainer}>
+            <Text style={estilo.dataTitle}>
+              Selecionar Profissional
+            </Text>
+            <Text style={estilo.dataText}>
+              ESCOLHER
             </Text>
           </View>
           <View style={estilo.infoContainer}>
@@ -153,7 +174,7 @@ export default function Solicitacao({ navigation }) {
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   setDiaAten(selectedItem);
-                  dataAten();
+                  dataAtendimento();
                   return selectedItem
                 }}
                 rowTextForSelection={(item, index) => {
@@ -168,7 +189,7 @@ export default function Solicitacao({ navigation }) {
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   setMesAten(selectedItem);
-                  dataAten();
+                  dataAtendimento();
                   return selectedItem
                 }}
                 rowTextForSelection={(item, index) => {
@@ -176,9 +197,19 @@ export default function Solicitacao({ navigation }) {
                 }} />
             </View>
           </View>
+          <View style={estilo.infoContainer}>
+            <View style={estilo.bigBox}>
+              <TextInput
+                onChangeText={(text) => setDescricao(text)}
+                placeholder="Deseja adicionar mais alguma informação?"
+                multiline={true}
+                style={estilo.bigText}>
+              </TextInput>
+            </View>
+          </View>
           <TouchableOpacity
             style={estilo.singUpButton}
-            onPress={() => (criarSolicitacao(), dataAten())}>
+            onPress={() => (dataAtendimento(), criarSolicitacao())}>
             <Text style={estilo.buttonText}> Confirmar Solicitação</Text>
           </TouchableOpacity>
         </ScrollView>

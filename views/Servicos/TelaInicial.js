@@ -20,22 +20,41 @@ export default function ServicoFunc({ navigation }) {
     const [searchText, setSearchText] = useState('');
     const [loading, setLoading] = useState(true);
     const [servicos, setServicos] = useState([]);
+    const [list, setList] = useState([]);
     var [solNome, setSolNome] = useState('');
     var [solPreco, setSolPreco] = useState('');
     var [solDesc, setSolDesc] = useState('');
-    global.solicitacao = [solNome, solPreco, solDesc];
+    var [solId, setSolId] = useState('');
+    global.solicitacao = [solNome, solPreco, solDesc, solId];
 
     //Processamento
     const coletarServico = async () => {
         await API.listServices();
         setServicos(jsonService)
         setLoading(false)
-
     }
 
     useEffect(() => {
         coletarServico();
     }, [])
+
+    //
+    const countService = () => {
+        for (var i = 0; i < servicos.lenght; i++) {
+
+            setList([
+                {
+                    Id: servicos[i]["Id"],
+                    Nome: servicos[i]["Nome"],
+                    Preco: servicos[i]["Preco"],
+                    Descricao: servicos[i]["Descricao"],
+                }
+            ])
+        }
+
+        console.log(list);
+    }
+    //
 
     if (loading) {
         return (
@@ -56,7 +75,7 @@ export default function ServicoFunc({ navigation }) {
             <ScrollView style={estilo.serviceContainer}>
                 <View>
                     <Text style={estilo.centerTitle}>
-                        Bem-vindo {cpf}
+                        Bem-vindo
                     </Text>
                     <View style={estilo.serviceContainer}>
                         <View style={estilo.searchArea}>
@@ -67,7 +86,6 @@ export default function ServicoFunc({ navigation }) {
                                 onChangeText={(text) => setSearchText(text)}
                             />
                         </View>
-
                         <View>
                             <Card style={estilo.card}>
                                 <Card.Title
@@ -82,9 +100,10 @@ export default function ServicoFunc({ navigation }) {
                                 <Card.Actions>
                                     <TouchableOpacity style={estilo.cardButton}
                                         onPress={() => (navigation.navigate(Solicitacao),
-                                        setSolNome(servicos[0]["Nome"]),
-                                        setSolPreco(servicos[0]["Preco"]),
-                                        setSolDesc(servicos[0]["Descricao"]))}>
+                                            setSolNome(servicos[0]["Nome"]),
+                                            setSolPreco(servicos[0]["Preco"]),
+                                            setSolDesc(servicos[0]["Descricao"]),
+                                            setSolId(servicos[0]["Id"]))}>
                                         <Text style={estilo.buttonText}>Selecionar</Text>
                                     </TouchableOpacity>
                                 </Card.Actions>
@@ -104,7 +123,8 @@ export default function ServicoFunc({ navigation }) {
                                         onPress={() => (navigation.navigate(Solicitacao),
                                             setSolNome(servicos[1]["Nome"]),
                                             setSolPreco(servicos[1]["Preco"]),
-                                            setSolDesc(servicos[1]["Descricao"]))}>
+                                            setSolDesc(servicos[1]["Descricao"]),
+                                            setSolId(servicos[1]["Id"]))}>
                                         <Text style={estilo.buttonText}>Selecionar</Text>
                                     </TouchableOpacity>
                                 </Card.Actions>
@@ -121,10 +141,11 @@ export default function ServicoFunc({ navigation }) {
                                 </Card.Content>
                                 <Card.Actions>
                                     <TouchableOpacity style={estilo.cardButton}
-                                    onPress={() => (navigation.navigate(Solicitacao),
-                                        setSolNome(servicos[2]["Nome"]),
-                                        setSolPreco(servicos[2]["Preco"]),
-                                        setSolDesc(servicos[2]["Descricao"]))}>
+                                        onPress={() => (navigation.navigate(Solicitacao),
+                                            setSolNome(servicos[2]["Nome"]),
+                                            setSolPreco(servicos[2]["Preco"]),
+                                            setSolDesc(servicos[2]["Descricao"]),
+                                            setSolId(servicos[2]["Id"]))}>
                                         <Text style={estilo.buttonText}>Selecionar</Text>
                                     </TouchableOpacity>
                                 </Card.Actions>

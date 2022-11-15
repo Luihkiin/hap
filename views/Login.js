@@ -22,7 +22,7 @@ export default function Login({ navigation }) {
     } else {
       await API.login();
       if (token === 'access') {
-        await navigation.navigate('TelaInicial' )
+        await navigation.navigate('TelaInicial')
       } else if (token === 'restrict'){
         await navigation.navigate(Cadastro)
       }

@@ -1,7 +1,7 @@
 import { Alert } from "react-native";
 
-//const ApiBase = "http://192.168.0.100:80/hap";
-const ApiBase = "https://hapacadec.000webhostapp.com/hap/";
+const ApiBase = "http://192.168.0.100:80/hap";
+//const ApiBase = "https://hapacadec.000webhostapp.com/hap/";
 
 var headers = {
     'Accept': 'application/json',
@@ -173,7 +173,8 @@ const API = {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-            body: JSON.stringify()}
+                body: JSON.stringify()
+            }
         })
             .then((image) => image.json())
             .then((image) => image)
@@ -191,6 +192,43 @@ const API = {
     },
 
     createOrder: async () => {
+        var Data = {
+            cpf: cpf,
+            funcionario: funcionario,
+            pagamento: pagGlobal,
+            servico: servico,
+            dataAten: dataAtenGlobal,
+            dataSol: dataSolGlobal,
+            descricao: descGlobal,
+        };
+
+        await fetch(ApiBase + '/servicos/solicitacao.php', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(Data),
+        })
+            .then((response) => response.json())
+            .then((response) => {
+                if (response = "Solicitacao Efetuada") {
+                    Alert.alert("Solicitação Efetuada", "Aguarde o atendimento");
+                    global.token = 'access';
+                } else {
+                    Alert.alert("Erro", "Tente novamente");
+                }
+            })
+            .catch((error) => {
+                Alert.alert("Erro ao solicitar serviço", "Tente novamente!")
+                console.log("Erro encontrado: " + error);
+            })
+    },
+
+    employeeSelect: async () => {
+        const response = await fetch(ApiBase + '/servicos/employee.php')
+            .then((response) => response.json())
+        global.jsonEmployee = response;
+    },
+
+    associateService: async () => {
 
     },
 }
