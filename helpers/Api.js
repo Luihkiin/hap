@@ -223,7 +223,15 @@ const API = {
     },
 
     employeeSelect: async () => {
-        const response = await fetch(ApiBase + '/servicos/employee.php')
+        var DataEmployee = {
+            servico: servico
+        };
+
+        const response = await fetch(ApiBase + '/servicos/employee.php', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(DataEmployee)
+        })
             .then((response) => response.json())
         global.jsonEmployee = response;
     },

@@ -29,7 +29,7 @@ export default function Cadastro({ navigation }) {
   global.cpfGlobal = cpf;
   global.emailGlobal = email;
   global.celGlobal = celular;
-  global.pwdGlobal
+  global.pwdGlobal = pwd;
   global.dataAtualGlobal = dataAtual;
   global.dataNascGlobal = dataNasc;
   global.idadeGlobal = idade;

@@ -18,7 +18,7 @@ export default function AdicionarServico({ navigation }) {
 
   //Processamento
   const coletarServico = async () => {
-    API.listServices();
+    API.associateService();
     setServicos(jsonService)
     setLoading(false)
   }
@@ -26,11 +26,6 @@ export default function AdicionarServico({ navigation }) {
   useEffect(() => {
     coletarServico();
   }, [])
-
-  const criarSolicitacao = async () => {
-    API.createOrder();
-    setLoading(true);
-  }
 
   if (loading) {
     return (
@@ -62,6 +57,32 @@ export default function AdicionarServico({ navigation }) {
                 Adicionar Serviço
               </Text>
               <View>
+                {servicos.map((servicos) => {
+                  return (
+                    <View>
+                      <Card style={estilo.card}>
+                        <Card.Title
+                          style={estilo.dataText}
+                          title={servicos.Nome}
+                          subtitle={servicos.Descricao}>
+                        </Card.Title>
+                        <Card.Content>
+                          <Text style={estilo.dataTitle}>
+                            R$ {servicos.Preco}</Text>
+                        </Card.Content>
+                        <Card.Actions>
+                          <TouchableOpacity style={estilo.cardButton}
+                            onPress={() => (//coletarServico(),
+                              setSelectedSt(true))}>
+                            <Text style={estilo.buttonText}>{isSelectedSt ? "Escolhido" : "Escolher"}</Text>
+                          </TouchableOpacity>
+                        </Card.Actions>
+                      </Card>
+                    </View>
+                  )
+                })}
+              </View>
+              <View>
                 <Card style={estilo.card}>
                   <Card.Title
                     style={estilo.dataText}
@@ -74,8 +95,8 @@ export default function AdicionarServico({ navigation }) {
                   </Card.Content>
                   <Card.Actions>
                     <TouchableOpacity style={estilo.cardButton}
-                    onPress ={() => (criarSolicitacao(),
-                      setSelectedSt(true))}>
+                      onPress={() => (criarSolicitacao(),
+                        setSelectedSt(true))}>
                       <Text style={estilo.buttonText}>{isSelectedSt ? "Escolhido" : "Escolher"}</Text>
                     </TouchableOpacity>
                   </Card.Actions>
@@ -92,8 +113,8 @@ export default function AdicionarServico({ navigation }) {
                   </Card.Content>
                   <Card.Actions>
                     <TouchableOpacity style={estilo.cardButton}
-                    onPress ={() => (criarSolicitacao(),
-                      setSelectedNd(true))}>
+                      onPress={() => (criarSolicitacao(),
+                        setSelectedNd(true))}>
                       <Text style={estilo.buttonText}>{isSelectedNd ? "Escolhido" : "Escolher"}</Text>
                     </TouchableOpacity>
                   </Card.Actions>
@@ -110,8 +131,8 @@ export default function AdicionarServico({ navigation }) {
                   </Card.Content>
                   <Card.Actions>
                     <TouchableOpacity style={estilo.cardButton}
-                    onPress ={() => (criarSolicitacao(),
-                      setSelectedRd(true))}>
+                      onPress={() => (criarSolicitacao(),
+                        setSelectedRd(true))}>
                       <Text style={estilo.buttonText}>{isSelectedRd ? "Escolhido" : "Escolher"}</Text>
                     </TouchableOpacity>
                   </Card.Actions>
@@ -119,9 +140,9 @@ export default function AdicionarServico({ navigation }) {
               </View>
               <View>
                 <TouchableOpacity style={estilo.singUpButton}
-                onPress={() => (setSelectedSt(false),
-                  setSelectedNd(false),
-                  setSelectedRd(false))}>
+                  onPress={() => (setSelectedSt(false),
+                    setSelectedNd(false),
+                    setSelectedRd(false))}>
                   <Text style={estilo.buttonText}>
                     Limpar escolhas</Text>
                 </TouchableOpacity>

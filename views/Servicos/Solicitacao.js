@@ -60,10 +60,16 @@ export default function Solicitacao({ navigation }) {
     setDataAten(dataProgramada);
   }
 
+  const listarFuncionario = async () => {
+    await API.employeeSelect();
+    setFuncs(jsonEmployee);
+  }
+
   useEffect(() => {
     setLoading(true);
     endereco();
     dataAtual();
+    listarFuncionario();
   }, [])
 
   if (loading) {
@@ -110,12 +116,25 @@ export default function Solicitacao({ navigation }) {
             </Text>
           </View>
           <View style={estilo.infoContainer}>
-            <Text style={estilo.dataTitle}>
-              Selecionar Profissional
-            </Text>
-            <Text style={estilo.dataText}>
-              ESCOLHER
-            </Text>
+            <SelectDropdown
+              buttonStyle={estilo.box}
+              defaultButtonText={"Selecionar Profissional"}
+              data={funcionarios.map((funcionarios) => {
+                return (
+                  <Text>{funcionarios.Nome}</Text>
+                )
+              })}
+              onSelect={(selectedItem, index) => {
+                //console.log(selectedItem, index)
+                setFuncE(selectedItem);
+                console.log(funcEscolhido);
+              }}
+              buttonTextAfterSelection={(selectedItem, index) => {
+                return selectedItem
+              }}
+              rowTextForSelection={(item, index) => {
+                return item
+              }} />
           </View>
           <View style={estilo.infoContainer}>
             <Text style={estilo.dataTitle}>
