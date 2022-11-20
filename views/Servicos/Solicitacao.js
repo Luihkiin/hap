@@ -121,12 +121,17 @@ export default function Solicitacao({ navigation }) {
               defaultButtonText={"Selecionar Profissional"}
               data={funcionarios.map((funcionarios) => {
                 return (
-                  <Text>{funcionarios.Nome}</Text>
+                  <>
+                    <Text>{funcionarios.Nome}</Text>
+                    <Text> - </Text>
+                    <Text>{funcionarios.Id}</Text>
+                  </>
+
                 )
               })}
               onSelect={(selectedItem, index) => {
                 //console.log(selectedItem, index)
-                setFuncE(selectedItem);
+                setFuncE(selectedItem["props"]["children"][2]["props"]["children"]);
                 console.log(funcEscolhido);
               }}
               buttonTextAfterSelection={(selectedItem, index) => {

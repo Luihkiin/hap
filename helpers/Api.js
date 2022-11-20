@@ -9,7 +9,6 @@ var headers = {
 };
 
 const API = {
-    //Cadastro
     singUp: async () => {
         var Data = {
             nome: nomeGlobal,
@@ -47,7 +46,6 @@ const API = {
             })
     },
 
-    //Login
     login: async () => {
         global.token = '';
 
@@ -83,7 +81,6 @@ const API = {
             })
     },
 
-    //Esqueci Senha
     forgotPass: async () => {
         if (emailGlobal.length == 0) {
             Alert.alert("Campos Faltando", "Insira seu email e tente novamente!");
@@ -117,7 +114,6 @@ const API = {
         }
     },
 
-    //Consultar Perfil
     profileSelect: async () => {
         global.token = '';
         global.jsonProfile = '';
@@ -136,7 +132,6 @@ const API = {
         return jsonProfile;
     },
 
-    //Atualizar Perfil
     profileUpdate: async () => {
         global.token = '';
 
@@ -167,6 +162,7 @@ const API = {
         Alert.alert("Cadastro atualizado", "Suas informações foram atualizadas com sucesso");
     },
 
+    /*
     pictureSelect: async () => {
         const image = await fetch(ApiBase + '/perfil/profilePicSelect.php', {
             method: 'GET',
@@ -183,6 +179,7 @@ const API = {
         global.profilePic = image;
         return profilePic;
     },
+    */
 
     listServices: async () => {
         const response = await
@@ -239,6 +236,20 @@ const API = {
     associateService: async () => {
 
     },
+
+    listSolicitation: async () => {
+        var SolicitacaoCli = {
+            cpf: cpf
+        };
+
+        const response = await fetch(ApiBase + '/servicos/historicoSol.php', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(SolicitacaoCli)
+        })
+            .then((response) => response.json())
+            global.jsonHistory = response        
+    }
 }
 
 export default API;
