@@ -5,6 +5,7 @@ import Pesquisa from './Servicos/Elementos/Pesquisa';
 import Perfil from './Perfil/Perfil';
 import EditarPerfil from './Perfil/EditarPerfil';
 import TelaInicial from './Servicos/TelaInicial';
+import Servico from './Servicos/Servico';
 import AdicionarServico from './Servicos/AdicionarServico';
 import Solicitacao from './Servicos/Solicitacao';
 import FinalSolicitacao from './Servicos/FinalSolicitacao';
@@ -15,6 +16,7 @@ export {Login,
     Pesquisa,
     Perfil,
     TelaInicial,
+    Servico,
     AdicionarServico,
     EditarPerfil,
     Solicitacao,

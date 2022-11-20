@@ -5,72 +5,38 @@ import { LinearGradient } from 'expo-linear-gradient';
 //import { StatusBar } from 'expo-status-bar';
 //import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Perfil from '../Perfil/Perfil';
-import AdicionarServico from './AdicionarServico';
+import Servico from './Servico';
 import { ScrollView } from 'react-native-gesture-handler';
 import API from '../../helpers/Api';
 import { ActivityIndicator } from 'react-native';
 import { Card } from 'react-native-paper';
 import Solicitacao from './Solicitacao.js';
 
-export default function ServicoFunc({ navigation }) {
+export default function TelaInicial({ navigation }) {
     const [searchText, setSearchText] = useState('');
     const [loading, setLoading] = useState(true);
     const [servicos, setServicos] = useState([]);
-    const [historico, setHist] = useState([]);
     let [mensageiro, setMen] = useState('');
-    let [mensageiroUsuario, setMenU] = useState('1');
+    let [mensageiroUsuario, setMenU] = useState('');
     const [list, setList] = useState([]);
     const [perfil, setPerfil] = useState([]);
     var [solNome, setSolNome] = useState('');
     var [solPreco, setSolPreco] = useState('');
     var [solDesc, setSolDesc] = useState('');
     var [solId, setSolId] = useState('');
-    global.solicitacao = [solNome, solPreco, solDesc, solId];
 
     useEffect(() => {
         coletarServico();
         coletarPerfil();
-        coletarSolicitacao();
         setLoading(false);
-        pesquisarServico;
     }, [])
 
     const coletarServico = async () => {
         await API.listServices();
         setServicos(jsonService);
-    }
-
-    const coletarPerfil = async () => {
-        await API.profileSelect();
-        setPerfil(jsonProfile);
-        //Render condicional = verifica tipo de perfil do usuário
-        if (perfil["Perfil"] == '1') {
-            const cliente =
-                <TouchableOpacity
-                    style={estilo.smallButton}>
-                    <Text style={estilo.buttonText}>
-                        Solicitações
-                    </Text>
-                </TouchableOpacity>;
-            setMenU(cliente);
-        } else {
-            const funcionario =
-                <TouchableOpacity
-                    onPress={() => navigation.navigate(AdicionarServico)}
-                    style={estilo.smallButton}>
-                    <Text style={estilo.buttonText}>
-                        Adicionar Serviços
-                    </Text>
-                </TouchableOpacity>;
-            setMenU(funcionario);
-        }
-    }
-
-    const coletarSolicitacao = async () => {
         await API.listSolicitation();
-        setHist(jsonHistory);
         //Render condicional = verifica se existe registros de solicitações
-        if (historico === "Nada") {
+        if (jsonHistory === "Nada") {
             const naoHist =
                 <Text style={estilo.text}>
                     Nenhuma Solicitação realizada
@@ -81,15 +47,15 @@ export default function ServicoFunc({ navigation }) {
                 <Card style={estilo.card}>
                     <Card.Title
                         style={estilo.dataText}
-                        title={historico["Nome"]}
-                        subtitle={historico["NomeFun"] + ' - ' + historico["Contato"]}>
+                        title={jsonHistory["Nome"]}
+                        subtitle={jsonHistory["NomeFun"] + ' - ' + jsonHistory["Contato"]}>
                     </Card.Title>
                     <Card.Content>
                         <Text style={estilo.dataText}>
-                            {historico["Pagamento"] + ' R$ ' + historico["Preco"]}
+                            {jsonHistory["Pagamento"] + ' R$ ' + jsonHistory["Preco"]}
                         </Text>
                         <Text style={estilo.dataText}>
-                            Data Prevista: {historico["Data"]}
+                            Data Prevista: {jsonHistory["Data"]}
                         </Text>
                     </Card.Content>
                 </Card>;
@@ -97,18 +63,65 @@ export default function ServicoFunc({ navigation }) {
         }
     }
 
-    const pesquisarServico = ( () => {
+    const coletarPerfil = async () => {
+        await API.profileSelect();
+        //Render condicional = verifica tipo de cliente
+        if (jsonProfile["Perfil"] == '1') {
+            let usuario =
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Perfil', { cpf })}
+                    style={estilo.smallButton}>
+                    <Text style={estilo.buttonText}>
+                        Perfil
+                    </Text>
+                </TouchableOpacity>
+            setMenU(usuario);
+        } else if (jsonProfile["Perfil"] == '2') {
+            let usuario =
+                <>
+                    <View>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('Perfil', { cpf })}
+                            style={estilo.smallButton}>
+                            <Text style={estilo.buttonText}>
+                                Perfil
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={estilo.rowContainer}>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('Servico')}
+                            style={estilo.smallButton}>
+                            <Text style={estilo.buttonText}>
+                                Adicionar Serviços
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={estilo.smallButton}>
+                            <Text style={estilo.buttonText}>
+                                Solicitações
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </>
+            setMenU(usuario);
+        }
+    }
+
+    /*
+    const pesquisarServico = (() => {
         if (searchText === '') {
             setList(servicos);
         } else {
             setList(
                 servicos.filter(
-                    (item) => 
-                    item.Nome.toLowerCase().indexOf(searchText.toLowerCase())
+                    (item) =>
+                        item.Nome.toLowerCase().indexOf(searchText.toLowerCase())
                 )
             )
         }
     }, [searchText])
+    */
 
     if (loading) {
         return (
@@ -131,29 +144,11 @@ export default function ServicoFunc({ navigation }) {
                         <Text style={estilo.centerTitle}>
                             Bem-vindo
                         </Text>
-                        <View style={estilo.rowContainer}>
-                            <TouchableOpacity
-                                onPress={() => navigation.navigate('Perfil', { cpf })}
-                                style={estilo.smallButton}>
-                                <Text style={estilo.buttonText}>
-                                    Perfil
-                                </Text>
-                            </TouchableOpacity>
-                            <View>
-                                {mensageiroUsuario}
-                            </View>
+                        <View>
+                            {mensageiroUsuario}
                         </View>
                     </View>
                     <View style={estilo.serviceContainer}>
-                        <View>
-                            <TouchableOpacity
-                                onPress={() => (coletarSolicitacao())}>
-                                <Text style={estilo.dataTitle}>Última Solicitação</Text>
-                            </TouchableOpacity>
-                            <View>
-                                {mensageiro}
-                            </View>
-                        </View>
                         <View style={estilo.searchArea}>
                             <TextInput
                                 style={estilo.text}
@@ -162,6 +157,17 @@ export default function ServicoFunc({ navigation }) {
                                 onChangeText={(text) => setSearchText(text)} />
                         </View>
                         <View>
+                            <Text style={estilo.dataTitle}>
+                                Última solicitação
+                            </Text>
+                            <View>
+                                {mensageiro}
+                            </View>
+                        </View>
+                        <View>
+                            <Text style={estilo.dataTitle}>
+                                Serviços disponíveis
+                            </Text>
                             <View>
                                 {servicos.map((servicos) => {
                                     return (

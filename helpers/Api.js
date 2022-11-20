@@ -127,9 +127,10 @@ const API = {
             headers: headers,
             body: JSON.stringify(Data),
         }).then((response) => response.json())
+        .catch((error) => {
+            console.log("Erro encontrado: " + error);
+        }) 
         global.jsonProfile = response;
-
-        return jsonProfile;
     },
 
     profileUpdate: async () => {
@@ -147,8 +148,10 @@ const API = {
             complemento: complementoGlobal,
         };
 
+        /*
         const formData = new FormData();
         formData.append('image', imageGlobal);
+        */
 
         await fetch(ApiBase + '/perfil/atualizarPerfil.php', {
             method: 'POST',
@@ -186,6 +189,21 @@ const API = {
             fetch(ApiBase + '/servicos/servico.php')
                 .then((response) => response.json())
         global.jsonService = response;
+    },
+
+    listOneService: async () => {
+        var Data = {
+            servicoId : servicos,
+        };
+
+        const response = await
+            fetch(ApiBase + '/servicos/servicoUnico.php', {
+            method:'POST',
+            headers: headers,
+            body: JSON.stringify(Data),
+        })
+                .then((response) => response.json())
+        global.jsonOneService = response;
     },
 
     createOrder: async () => {
@@ -234,7 +252,24 @@ const API = {
     },
 
     associateService: async () => {
+        global.token = ''
 
+        var Data = {
+            servicoId : servicoId,
+            funcionarioId : funcionarioId,
+        }
+
+        await fetch(ApiBase + '/servicos/CadastroServico.php', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(Data),
+        })
+            .then((response) => response.json())
+            .catch((error) => {
+                console.log("Erro encontrado: " + error)
+            })
+        Alert.alert("Processo concluído", "Serviço inserido com sucesso");
+        global.token = 'access'
     },
 
     listSolicitation: async () => {
@@ -248,7 +283,7 @@ const API = {
             body: JSON.stringify(SolicitacaoCli)
         })
             .then((response) => response.json())
-            global.jsonHistory = response        
+            global.jsonHistory = response  
     }
 }
 

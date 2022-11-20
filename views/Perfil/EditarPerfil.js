@@ -4,7 +4,7 @@ import { estilo } from '../../assets/css/Css'
 import { LinearGradient } from 'expo-linear-gradient';
 import { TextInput } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ServicoFunc } from '../Servicos/TelaInicial';
+import { TelaInicial } from '../Servicos/TelaInicial';
 import API from '../../helpers/Api';
 
 export default function EditarPerfil({ route, navigation }) {

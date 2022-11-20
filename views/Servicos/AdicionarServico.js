@@ -1,156 +1,88 @@
-import React, { useState, useEffect, useReducer } from 'react';
-import { Alert, Text, View, TouchableOpacity, Image, TextInput, SafeAreaView, ScrollView, FlatList } from "react-native";
-import { estilo } from '../../assets/css/Css.js'
+import React, { useState, useEffect } from 'react';
+import { SafeAreaView, Alert, Text, View, TouchableOpacity, TextInput, Image } from "react-native";
+import { estilo } from '../../assets/css/Css.js';
 import { LinearGradient } from 'expo-linear-gradient';
-import SelectDropdown from 'react-native-select-dropdown';
-import { setStatusBarBackgroundColor } from 'expo-status-bar';
-import { ActivityIndicator } from 'react-native';
-import { Card } from 'react-native-paper';
+import Servico from './Servico';
+import { ScrollView } from 'react-native-gesture-handler';
 import API from '../../helpers/Api';
+import { ActivityIndicator } from 'react-native';
+import { TelaInicial } from './TelaInicial';
 
 export default function AdicionarServico({ navigation }) {
+    const [loading, setLoading] = useState(true);
+    var [perfil, setPer] = useState('');
+    const [servico, setSer] = useState([]);
+    global.funcionarioId = perfil["Id"];
+    global.servicoId = servico["Id"];
 
-  const [loading, setLoading] = useState(true);
-  const [servicos, setServicos] = useState([]);
-  const [isSelectedSt, setSelectedSt] = useState(false);
-  const [isSelectedNd, setSelectedNd] = useState(false);
-  const [isSelectedRd, setSelectedRd] = useState(false);
+    useEffect(() => {
+        coletarPerfil();
+        coletaServico();
+        setLoading(false);
+    })
 
-  //Processamento
-  const coletarServico = async () => {
-    API.associateService();
-    setServicos(jsonService)
-    setLoading(false)
-  }
+    const coletarPerfil = async () => {
+        await API.profileSelect();
+        setPer(jsonProfile);
+    }
 
-  useEffect(() => {
-    coletarServico();
-  }, [])
+    const coletaServico = async () => {
+        await API.listOneService();
+        setSer(jsonOneService);
+    }
 
-  if (loading) {
-    return (
-      <View>
-        <ActivityIndicator
-          style={estilo.container}
-          size="large"
-          loading={loading} />
-      </View>
-    )
-  }
+    const associarServico = async () => {
+        await API.associateService();
+        if (token === 'access') {
+            navigation.navigate('TelaInicial')
+        }
+    }
 
-  //FRONT-END
-  return (
-    <LinearGradient
-      colors={['#FFFFFF', '#00FFF0']}
-      style={estilo.linearGradient}>
-      <View>
-        <Image
-          style={estilo.image}
-          source={require('../../assets/img/icons/Services.png')}>
-        </Image>
-      </View>
-      <View style={estilo.loginContainer}>
-        <ScrollView>
-          <SafeAreaView>
+    if (loading) {
+        return (
             <View>
-              <Text style={estilo.centerTitle}>
-                Adicionar Serviço
-              </Text>
-              <View>
-                {servicos.map((servicos) => {
-                  return (
-                    <View>
-                      <Card style={estilo.card}>
-                        <Card.Title
-                          style={estilo.dataText}
-                          title={servicos.Nome}
-                          subtitle={servicos.Descricao}>
-                        </Card.Title>
-                        <Card.Content>
-                          <Text style={estilo.dataTitle}>
-                            R$ {servicos.Preco}</Text>
-                        </Card.Content>
-                        <Card.Actions>
-                          <TouchableOpacity style={estilo.cardButton}
-                            onPress={() => (//coletarServico(),
-                              setSelectedSt(true))}>
-                            <Text style={estilo.buttonText}>{isSelectedSt ? "Escolhido" : "Escolher"}</Text>
-                          </TouchableOpacity>
-                        </Card.Actions>
-                      </Card>
-                    </View>
-                  )
-                })}
-              </View>
-              <View>
-                <Card style={estilo.card}>
-                  <Card.Title
-                    style={estilo.dataText}
-                    title={servicos[0]["Nome"]}
-                    subtitle={servicos[0]["Descricao"]}>
-                  </Card.Title>
-                  <Card.Content>
-                    <Text style={estilo.dataTitle}>
-                      R$ {servicos[0]["Preco"]}</Text>
-                  </Card.Content>
-                  <Card.Actions>
-                    <TouchableOpacity style={estilo.cardButton}
-                      onPress={() => (criarSolicitacao(),
-                        setSelectedSt(true))}>
-                      <Text style={estilo.buttonText}>{isSelectedSt ? "Escolhido" : "Escolher"}</Text>
-                    </TouchableOpacity>
-                  </Card.Actions>
-                </Card>
-                <Card style={estilo.card}>
-                  <Card.Title
-                    title={servicos[1]["Nome"]}
-                    subtitle={servicos[1]["Descricao"]}
-                    style={estilo.dataText}>
-                  </Card.Title>
-                  <Card.Content>
-                    <Text style={estilo.dataTitle}>
-                      R$ {servicos[1]["Preco"]}</Text>
-                  </Card.Content>
-                  <Card.Actions>
-                    <TouchableOpacity style={estilo.cardButton}
-                      onPress={() => (criarSolicitacao(),
-                        setSelectedNd(true))}>
-                      <Text style={estilo.buttonText}>{isSelectedNd ? "Escolhido" : "Escolher"}</Text>
-                    </TouchableOpacity>
-                  </Card.Actions>
-                </Card>
-                <Card style={estilo.card}>
-                  <Card.Title
-                    title={servicos[2]["Nome"]}
-                    subtitle={servicos[2]["Descricao"]}
-                    style={estilo.dataText}>
-                  </Card.Title>
-                  <Card.Content>
-                    <Text style={estilo.dataTitle}>
-                      R$ {servicos[2]["Preco"]}</Text>
-                  </Card.Content>
-                  <Card.Actions>
-                    <TouchableOpacity style={estilo.cardButton}
-                      onPress={() => (criarSolicitacao(),
-                        setSelectedRd(true))}>
-                      <Text style={estilo.buttonText}>{isSelectedRd ? "Escolhido" : "Escolher"}</Text>
-                    </TouchableOpacity>
-                  </Card.Actions>
-                </Card>
-              </View>
-              <View>
-                <TouchableOpacity style={estilo.singUpButton}
-                  onPress={() => (setSelectedSt(false),
-                    setSelectedNd(false),
-                    setSelectedRd(false))}>
-                  <Text style={estilo.buttonText}>
-                    Limpar escolhas</Text>
-                </TouchableOpacity>
-              </View>
+                <ActivityIndicator
+                    style={estilo.container}
+                    size="large"
+                    loading={loading} />
             </View>
-          </SafeAreaView>
-        </ScrollView>
-      </View>
-    </LinearGradient >
-  )
+        )
+    }
+
+    return (
+        <LinearGradient
+            colors={['#FFFFFF', '#00FFF0']}
+            style={estilo.linearGradient}>
+            <View>
+                <Image
+                    style={estilo.image}
+                    source={require('../../assets/img/icons/Services.png')}>
+                </Image>
+            </View>
+            <View style={estilo.loginContainer}>
+                <ScrollView>
+                    <SafeAreaView>
+                        <View>
+                            <Text style={estilo.centerTitle}>
+                                Confirmar Serviço
+                            </Text>
+                            <View style={estilo.infoContainer}>
+                                <Text style={estilo.dataText}>{servico["Nome"]}</Text>
+                                <Text style={estilo.dataText}>Versão: {servico["Premium"]}</Text>
+                                <Text style={estilo.dataText}>{servico["Descricao"]}</Text>
+                                <Text style={estilo.dataText}>Preço: R$ {servico["Preco"]} </Text>
+                            </View>
+                            <TouchableOpacity
+                            onPress={() => associarServico()}
+                            style={estilo.singUpButton}>
+                                <Text style={estilo.buttonText}>
+                                    Confirmar escolha
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                    </SafeAreaView>
+                </ScrollView>
+            </View>
+        </LinearGradient>
+    )
 }
