@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Cadastro, Login, EsqSenha, Perfil, EditarPerfil, Pesquisa, TelaInicial, AdicionarServico, Servico, Solicitacao, FinalSolicitacao} from './views';
+import { Cadastro, Login, EsqSenha, Perfil, EditarPerfil, Pesquisa, TelaInicial, AdicionarServico, Servico, Solicitacao, SolicitacaoFuncionario, FinalSolicitacao} from './views';
 import 'react-native-gesture-handler';
 
 export default function App() {
@@ -21,6 +21,7 @@ export default function App() {
         <Stack.Screen name="EditarPerfil" component={EditarPerfil} options={{ headerShown: false}} />
         <Stack.Screen name="Solicitacao" component={Solicitacao} options={{ headerShown: false}} />
         <Stack.Screen name="FinalSolicitacao" component={FinalSolicitacao} options={{ headerShown: false}}/>
+        <Stack.Screen name="SolicitacaoFuncionario" component={SolicitacaoFuncionario} options={{ headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

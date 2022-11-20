@@ -10,26 +10,24 @@ import { TelaInicial } from './TelaInicial';
 
 export default function AdicionarServico({ navigation }) {
     const [loading, setLoading] = useState(true);
-    var [perfil, setPer] = useState('');
+    const [perfil, setPer] = useState('');
     const [servico, setSer] = useState([]);
-    global.funcionarioId = perfil["Id"];
+    global.funcionarioId = perfil;
     global.servicoId = servico["Id"];
 
-    useEffect(() => {
-        coletarPerfil();
-        coletaServico();
-        setLoading(false);
-    })
+    console.log(perfil)
+    console.log(servicoId)
 
-    const coletarPerfil = async () => {
-        await API.profileSelect();
-        setPer(jsonProfile);
-    }
-
-    const coletaServico = async () => {
+    const coletarServico = async () => {
         await API.listOneService();
         setSer(jsonOneService);
+        setPer(jsonProfile["Id"]);
+        setLoading(false);
     }
+
+    useEffect(() => {
+        coletarServico();
+    }, [])
 
     const associarServico = async () => {
         await API.associateService();

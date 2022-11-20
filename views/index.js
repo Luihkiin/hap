@@ -8,6 +8,7 @@ import TelaInicial from './Servicos/TelaInicial';
 import Servico from './Servicos/Servico';
 import AdicionarServico from './Servicos/AdicionarServico';
 import Solicitacao from './Servicos/Solicitacao';
+import SolicitacaoFuncionario from './Servicos/SolicitacaoFuncionario';
 import FinalSolicitacao from './Servicos/FinalSolicitacao';
 
 export {Login,
@@ -20,4 +21,5 @@ export {Login,
     AdicionarServico,
     EditarPerfil,
     Solicitacao,
+    SolicitacaoFuncionario,
     FinalSolicitacao};

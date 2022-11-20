@@ -11,6 +11,7 @@ import API from '../../helpers/Api';
 import { ActivityIndicator } from 'react-native';
 import { Card } from 'react-native-paper';
 import Solicitacao from './Solicitacao.js';
+import SolicitacaoFuncionario from './SolicitacaoFuncionario.js';
 
 export default function TelaInicial({ navigation }) {
     const [searchText, setSearchText] = useState('');
@@ -19,11 +20,12 @@ export default function TelaInicial({ navigation }) {
     let [mensageiro, setMen] = useState('');
     let [mensageiroUsuario, setMenU] = useState('');
     const [list, setList] = useState([]);
-    const [perfil, setPerfil] = useState([]);
+//    const [perfil, setPerfil] = useState([]);
     var [solNome, setSolNome] = useState('');
     var [solPreco, setSolPreco] = useState('');
     var [solDesc, setSolDesc] = useState('');
     var [solId, setSolId] = useState('');
+    global.solicitacao = [solNome, solPreco, solDesc, solId];
 
     useEffect(() => {
         coletarServico();
@@ -97,6 +99,7 @@ export default function TelaInicial({ navigation }) {
                             </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
+                            onPress={() => navigation.navigate('SolicitacaoFuncionario')}
                             style={estilo.smallButton}>
                             <Text style={estilo.buttonText}>
                                 Solicitações
@@ -184,7 +187,7 @@ export default function TelaInicial({ navigation }) {
                                                 </Card.Content>
                                                 <Card.Actions>
                                                     <TouchableOpacity style={estilo.cardButton}
-                                                        onPress={() => (navigation.navigate(Solicitacao),
+                                                        onPress={() => (navigation.navigate('Solicitacao'),
                                                             setSolNome(servicos.Nome),
                                                             setSolPreco(servicos.Preco),
                                                             setSolDesc(servicos.Descricao),

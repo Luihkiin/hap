@@ -5,6 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import TelaInicial from '../Servicos/TelaInicial';
 
 export default function FinalSolicitacao({ navigation }) {
+
     return (
         <LinearGradient
             colors={['#FFFFFF', '#00FFF0']}

@@ -127,9 +127,9 @@ const API = {
             headers: headers,
             body: JSON.stringify(Data),
         }).then((response) => response.json())
-        .catch((error) => {
-            console.log("Erro encontrado: " + error);
-        }) 
+            .catch((error) => {
+                console.log("Erro encontrado: " + error);
+            })
         global.jsonProfile = response;
     },
 
@@ -193,15 +193,15 @@ const API = {
 
     listOneService: async () => {
         var Data = {
-            servicoId : servicos,
+            servicoId: servicos,
         };
 
         const response = await
             fetch(ApiBase + '/servicos/servicoUnico.php', {
-            method:'POST',
-            headers: headers,
-            body: JSON.stringify(Data),
-        })
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify(Data),
+            })
                 .then((response) => response.json())
         global.jsonOneService = response;
     },
@@ -254,22 +254,29 @@ const API = {
     associateService: async () => {
         global.token = ''
 
-        var Data = {
-            servicoId : servicoId,
-            funcionarioId : funcionarioId,
+        var AssociateData = {
+            servicoId: servicoId,
+            funcionarioId: funcionarioId,
         }
 
         await fetch(ApiBase + '/servicos/CadastroServico.php', {
             method: 'POST',
             headers: headers,
-            body: JSON.stringify(Data),
+            body: JSON.stringify(AssociateData),
         })
             .then((response) => response.json())
+
+            .then((response) => {
+                if (response === 'Registrado') {
+                    Alert.alert("Processo concluído", "Serviço inserido com sucesso");
+                    global.token = 'access'
+                } else if (response === 'Existente') {
+                    Alert.alert("Serviço cadastrado", "Você já possui este serviço cadastrado");
+                }
+            })
             .catch((error) => {
                 console.log("Erro encontrado: " + error)
             })
-        Alert.alert("Processo concluído", "Serviço inserido com sucesso");
-        global.token = 'access'
     },
 
     listSolicitation: async () => {
@@ -283,8 +290,22 @@ const API = {
             body: JSON.stringify(SolicitacaoCli)
         })
             .then((response) => response.json())
-            global.jsonHistory = response  
-    }
+        global.jsonHistory = response
+    },
+
+    listSolicitationAssociate: async () => {
+        var AssociateData = {
+            funcionarioId: funcionarioId,
+        };
+
+        const response = await fetch(ApiBase + '/servicos/solicitacaoAssociada.php', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(AssociateData)
+        })
+            .then((response) => response.json())
+            global.solicitacaoAssociada = response;
+    },
 }
 
 export default API;
