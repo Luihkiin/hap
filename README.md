@@ -25,3 +25,7 @@
 # cadastro.php
 # database.php
 # esqSenha.php
+#
+#
+#
+# Qualquer dúvida, por gentileza entre em contato.
