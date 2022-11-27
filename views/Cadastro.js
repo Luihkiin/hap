@@ -9,7 +9,6 @@ import { TextInputMask } from 'react-native-masked-text';
 import API from '../helpers/Api';
 
 export default function Cadastro({ navigation }) {
-  //VARIÁVEIS
   var [sexo, setSex] = useState('');
   var [nome, setNom] = useState('');
   var [cpfMask, setCpfMask] = useState('');
@@ -33,33 +32,19 @@ export default function Cadastro({ navigation }) {
   global.dataAtualGlobal = dataAtual;
   global.dataNascGlobal = dataNasc;
   global.idadeGlobal = idade;
-  //Variáveis para selecionar data
   const diaSeletor = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
   const mesSeletor = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
-  //Variável plano Premium. Criar laço com base na idade, para liberar o premium para quem tiver mais que 60 anos
-  //var [premium] = useState('');
-  /*A variável id365 define o status da pessoa
-  1 - Ativo | 2 - Inativo | 3 - Aguardando aprovação | 4 - Banido*/
+  //1 - Ativo | 2 - Inativo | 3 - Aguardando aprovação | 4 - Banido*/
   global.id365 = useState('');
-
-  /*Variavel que determina cliente ou funcionário.
-  1 - Cliente | 2 - Funcionário */
   var [perfil, setPer] = useState('1');
   global.perfilGlobal = perfil;
-
-  //Variável para comparação de senha
   var [pwdC, setPwdC] = useState('');
-
-  //PROCESSAMENTO
-  //Função para definir data Atual
   useEffect(() => {
     let hoje = new Date();
-    //let data = hoje.getFullYear() + '-' + (hoje.getMonth() + 1) + '-' + hoje.getDate();
     setDataAtual(hoje);
     ConversorData();
   }, []);
 
-  //If para definição de perfil de cliente ou funcionário
   if (perfil === '1') {
     global.id365 = '1'; //Cliente aprovado
   } else {
@@ -77,7 +62,6 @@ export default function Cadastro({ navigation }) {
     setIdade(periodo);
   }
 
-  //Processamento de informações
   const ConfirmarInfo = async () => {
     if (idade == 0) {
       Alert.alert("Erro!", "Confirme sua idade");
@@ -95,7 +79,6 @@ export default function Cadastro({ navigation }) {
     }
   }
 
-  //FRONT-END
   return (
     <LinearGradient
       colors={['#FFFFFF', '#00FFF0']}

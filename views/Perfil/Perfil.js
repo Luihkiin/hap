@@ -13,41 +13,19 @@ export default function Perfil({ navigation }) {
   const [loading, setLoading] = useState(true);
   const [infos, setInfos] = useState([]);
   const [photo, setPhoto] = useState('');
-  var [sexo, setSexo] = useState('');
-  var [premium, setPremium] = useState('');
 
   //Processamento
   const coletarInfos = async () => {
     await API.profileSelect();
     setInfos(jsonProfile);
-    setLoading(false);
   }
 
   console.log(infos);
 
-  const conversorInfos = async () => {
-    if (infos["Sexo"] = 1){
-      setSexo("Masculino")
-    } else if (infos["Sexo"] = 2){
-      setSexo("Feminino")
-    } else {
-      setSexo("Outros")
-    }
-
-    if (infos["Premium"] = "0"){
-      setPremium("Desabilitada")
-    } else if (infos["Premium"] = "1"){
-      setPremium("Habilitada")
-    } else {
-      setPremium("Desabilitada")
-    }
-  }
-
-
   useEffect(() => {
     setLoading(true);
     coletarInfos();
-    conversorInfos();
+    setLoading(false);
   }, [])
 
   if (loading) {
@@ -73,11 +51,11 @@ export default function Perfil({ navigation }) {
           <View style={estilo.infoContainer}>
             <Text style={estilo.dataTitle}>Dados pessoais </Text>
             <Text style={estilo.dataText}>Nome: {infos["Nome"]}</Text>
-            <Text style={estilo.dataText}>Sexo: {sexo}</Text>
+            <Text style={estilo.dataText}>Sexo: {infos["Sexo"]}</Text>
             <Text style={estilo.dataText}>CPF: {infos["CPF"]}</Text>
             <Text style={estilo.dataText}>Data Nascimento: {infos["DataNasc"]} </Text>
             <Text style={estilo.dataText}>Idade: {infos["Idade"]}</Text>
-            <Text style={estilo.dataText}>Versão Confort: {premium}</Text>
+            <Text style={estilo.dataText}>Versão Confort: {infos["Premium"]}</Text>
           </View>
           <View style={estilo.infoContainer}>
             <Text style={estilo.dataTitle}>Informações de Contato</Text>

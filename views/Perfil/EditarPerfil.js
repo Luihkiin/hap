@@ -8,7 +8,6 @@ import { TelaInicial } from '../Servicos/TelaInicial';
 import API from '../../helpers/Api';
 
 export default function EditarPerfil({ route, navigation }) {
-    //Declaração de variáveis
     const { cpf } = route.params;
     const [loading, setLoading] = useState(true);
     const [infos, setInfos] = useState([]);
@@ -18,7 +17,7 @@ export default function EditarPerfil({ route, navigation }) {
     var [cidade, setCid] = useState('');
     var [bairro, setBai] = useState('');
     var [rua, setRua] = useState('');
-    var [complemento, setCom] = useState('');
+    var [complemento, setCom] = useState('.');
     var [numero, setNum] = useState('');
     const [image, setImage] = useState(null);
     global.cpfGlobal = cpf;
@@ -32,8 +31,6 @@ export default function EditarPerfil({ route, navigation }) {
     global.numeroGlobal = numero;
     global.imageGlobal = image;
 
-    //Processamento
-    //Constultar Perfil
     const coletarInfos = async () => {
         API.profileSelect();
         setInfos(jsonProfile);
@@ -67,7 +64,6 @@ export default function EditarPerfil({ route, navigation }) {
         )
     }
 
-    //Front-End
     return (
         <LinearGradient
             colors={['#FFFFFF', '#00FFF0']}
@@ -96,7 +92,8 @@ export default function EditarPerfil({ route, navigation }) {
                             <TextInput
                                 style={estilo.updateText}
                                 onChangeText={(text) => setCel(text)}
-                                placeholder={infos["Celular"]}>
+                                placeholder={infos["Celular"]}
+                                keyboardType='numeric'>
                             </TextInput>
                         </View>
 
@@ -110,6 +107,7 @@ export default function EditarPerfil({ route, navigation }) {
                             <TextInput
                                 style={estilo.updateText}
                                 onChangeText={(text) => setCep(text)}
+                                keyboardType='numeric'
                                 placeholder={infos["Cep"]}>
                             </TextInput>
                         </View>
@@ -146,11 +144,12 @@ export default function EditarPerfil({ route, navigation }) {
                     </View>
                     <View style={estilo.rowContainer}>
                         <Text style={estilo.dataText}>Número:</Text>
-                        <View style={estilo.updateSmallBox}>
+                        <View style={estilo.updateTextBox}>
                             <TextInput
                                 style={estilo.updateText}
                                 onChangeText={(text) => setNum(text)}
-                                placeholder={infos["Numero"]}>
+                                placeholder={infos["Numero"]}
+                                keyboardType='numeric'>
                             </TextInput>
                         </View>
                     </View>

@@ -148,10 +148,9 @@ const API = {
             complemento: complementoGlobal,
         };
 
-        /*
         const formData = new FormData();
         formData.append('image', imageGlobal);
-        */
+    
 
         await fetch(ApiBase + '/perfil/atualizarPerfil.php', {
             method: 'POST',
