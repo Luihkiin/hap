@@ -52,6 +52,7 @@
 # Quando finalizar, executar: Expo start
 # Baixar o aplicativo Expo Go em seu celular
 # Escanear o QrCode que foi exibido no terminal
+# Agora inicie o Xampp e o serviço Apache
 # Pronto, já é possível testar o aplicativo!
 #
 #
